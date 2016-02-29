@@ -1,0 +1,357 @@
+
+
+Begin test_event_timeline_framework()
+Visiting MetricsEvent,  type type1 timestamp in msec: 0
+Visiting MetricsEvent,  type type2 timestamp in msec: 1
+Visiting MetricsEvent,  type type3 timestamp in msec: 3
+
+Test Json serialization.
+{
+   "cobalt_object" : "metrics_event_timeline",
+   "timeline" : [
+      {
+         "ts" : 0,
+         "type" : "type1"
+      },
+      {
+         "ts" : 1,
+         "type" : "type2"
+      },
+      {
+         "ts" : 3,
+         "type" : "type3"
+      }
+   ],
+   "version" : "1"
+}
+
+test visiting events with visitNewEvents()
+Visiting MetricsEvent,  type type4 timestamp in msec: 4
+Visiting MetricsEvent,  type type5 timestamp in msec: 5
+
+
+End test_event_timeline_framework()
+
+
+Begin test_event_timeline_real_types()
+Visiting MetricsEvent,  type audio_arrival numberOfSamples 100 beginAssociatedFrameIndex -1 endAssociatedFrameIndex -1
+Visiting MetricsEvent,  type frame_finish_processing frameIndex 0
+Visiting MetricsEvent,  type fe_begin_processing frameIndex 0
+Visiting MetricsEvent,  type scorer_propagate_start_type frameIndex 0
+Visiting MetricsEvent,  type scorer_propagate_end_type frameIndex 0
+Visiting MetricsEvent,  type frame_creation frameIndex 1
+Visiting MetricsEvent,  type frame_finish_processing frameIndex 1
+Visiting MetricsEvent,  type end_of_session
+Visiting MetricsEvent,  type start_of_utterance frameIndex 0
+Visiting MetricsEvent,  type end_of_utterance frameIndex 1
+Visiting MetricsEvent,  type end_of_session_associated_frames numberOfSamples 0 beginAssociatedFrameIndex 0 endAssociatedFrameIndex 1
+Visiting MetricsEvent,  type partial_result_build_begin frameIndex 0
+Visiting MetricsEvent,  type partial_result_build_end frameIndex 0
+Visiting MetricsEvent,  type result_build_begin frameIndex 1
+Visiting MetricsEvent,  type result_build_end frameIndex 1
+Visiting MetricsEvent,  type recognizer_start_type
+Visiting MetricsEvent,  type recognizer_setup_finish_type
+
+
+End test_event_timeline_real_types()
+
+
+Begin test_compute_latency_calculator()
+
+Timeline: 
+Visiting MetricsEvent,  type frame_creation frameIndex 0 timestamp in msec: 0
+Visiting MetricsEvent,  type frame_finish_processing frameIndex 0 timestamp in msec: 8
+Visiting MetricsEvent,  type frame_creation frameIndex 1 timestamp in msec: 10
+Visiting MetricsEvent,  type frame_finish_processing frameIndex 1 timestamp in msec: 18
+Visiting MetricsEvent,  type frame_creation frameIndex 2 timestamp in msec: 20
+Visiting MetricsEvent,  type frame_finish_processing frameIndex 2 timestamp in msec: 28
+Visiting MetricsEvent,  type frame_creation frameIndex 3 timestamp in msec: 30
+Visiting MetricsEvent,  type frame_finish_processing frameIndex 3 timestamp in msec: 38
+Visiting MetricsEvent,  type frame_creation frameIndex 4 timestamp in msec: 40
+Visiting MetricsEvent,  type frame_finish_processing frameIndex 4 timestamp in msec: 48
+Compute latency for each frame
+compute latency at frame index 0 : 8 milliseconds.
+compute latency at frame index 1 : 8 milliseconds.
+compute latency at frame index 2 : 8 milliseconds.
+compute latency at frame index 3 : 8 milliseconds.
+compute latency at frame index 4 : 8 milliseconds.
+Total front-end processing time: 0
+Total computes in timeline are 40
+Total audio processed: 50
+Add 3 events of 15 msec to timeline.
+
+Timeline: 
+Visiting MetricsEvent,  type frame_creation frameIndex 0 timestamp in msec: 0
+Visiting MetricsEvent,  type frame_finish_processing frameIndex 0 timestamp in msec: 8
+Visiting MetricsEvent,  type frame_creation frameIndex 1 timestamp in msec: 10
+Visiting MetricsEvent,  type frame_finish_processing frameIndex 1 timestamp in msec: 18
+Visiting MetricsEvent,  type frame_creation frameIndex 2 timestamp in msec: 20
+Visiting MetricsEvent,  type frame_finish_processing frameIndex 2 timestamp in msec: 28
+Visiting MetricsEvent,  type frame_creation frameIndex 3 timestamp in msec: 30
+Visiting MetricsEvent,  type frame_finish_processing frameIndex 3 timestamp in msec: 38
+Visiting MetricsEvent,  type frame_creation frameIndex 4 timestamp in msec: 40
+Visiting MetricsEvent,  type frame_finish_processing frameIndex 4 timestamp in msec: 48
+Visiting MetricsEvent,  type frame_creation frameIndex 5 timestamp in msec: 50
+Visiting MetricsEvent,  type frame_finish_processing frameIndex 5 timestamp in msec: 65
+Visiting MetricsEvent,  type frame_creation frameIndex 6 timestamp in msec: 60
+Visiting MetricsEvent,  type frame_finish_processing frameIndex 6 timestamp in msec: 75
+Visiting MetricsEvent,  type frame_creation frameIndex 7 timestamp in msec: 70
+Visiting MetricsEvent,  type frame_finish_processing frameIndex 7 timestamp in msec: 85
+Compute latency for each frame
+compute latency at frame index 0 : 8 milliseconds.
+compute latency at frame index 1 : 8 milliseconds.
+compute latency at frame index 2 : 8 milliseconds.
+compute latency at frame index 3 : 8 milliseconds.
+compute latency at frame index 4 : 8 milliseconds.
+compute latency at frame index 5 : 15 milliseconds.
+compute latency at frame index 6 : 20 milliseconds.
+compute latency at frame index 7 : 25 milliseconds.
+Total front-end processing time: 0
+Total computes in timeline are 85
+Total audio processed: 80
+Add 4 events of 9 msec to timeline, and two frontend processing events of 3 msec
+
+Timeline: 
+Visiting MetricsEvent,  type frame_creation frameIndex 0 timestamp in msec: 0
+Visiting MetricsEvent,  type frame_finish_processing frameIndex 0 timestamp in msec: 8
+Visiting MetricsEvent,  type frame_creation frameIndex 1 timestamp in msec: 10
+Visiting MetricsEvent,  type frame_finish_processing frameIndex 1 timestamp in msec: 18
+Visiting MetricsEvent,  type frame_creation frameIndex 2 timestamp in msec: 20
+Visiting MetricsEvent,  type frame_finish_processing frameIndex 2 timestamp in msec: 28
+Visiting MetricsEvent,  type frame_creation frameIndex 3 timestamp in msec: 30
+Visiting MetricsEvent,  type frame_finish_processing frameIndex 3 timestamp in msec: 38
+Visiting MetricsEvent,  type frame_creation frameIndex 4 timestamp in msec: 40
+Visiting MetricsEvent,  type frame_finish_processing frameIndex 4 timestamp in msec: 48
+Visiting MetricsEvent,  type frame_creation frameIndex 5 timestamp in msec: 50
+Visiting MetricsEvent,  type frame_finish_processing frameIndex 5 timestamp in msec: 65
+Visiting MetricsEvent,  type frame_creation frameIndex 6 timestamp in msec: 60
+Visiting MetricsEvent,  type frame_finish_processing frameIndex 6 timestamp in msec: 75
+Visiting MetricsEvent,  type frame_creation frameIndex 7 timestamp in msec: 70
+Visiting MetricsEvent,  type frame_finish_processing frameIndex 7 timestamp in msec: 85
+Visiting MetricsEvent,  type fe_begin_processing frameIndex 0 timestamp in msec: 0
+Visiting MetricsEvent,  type fe_end_processing frameIndex 0 timestamp in msec: 3
+Visiting MetricsEvent,  type fe_begin_processing frameIndex 0 timestamp in msec: 5
+Visiting MetricsEvent,  type fe_end_processing frameIndex 0 timestamp in msec: 9
+Visiting MetricsEvent,  type fe_begin_processing frameIndex 1 timestamp in msec: 10
+Visiting MetricsEvent,  type fe_end_processing frameIndex 1 timestamp in msec: 15
+Visiting MetricsEvent,  type frame_creation frameIndex 8 timestamp in msec: 80
+Visiting MetricsEvent,  type frame_finish_processing frameIndex 8 timestamp in msec: 89
+Visiting MetricsEvent,  type frame_creation frameIndex 9 timestamp in msec: 90
+Visiting MetricsEvent,  type frame_finish_processing frameIndex 9 timestamp in msec: 99
+Visiting MetricsEvent,  type frame_creation frameIndex 10 timestamp in msec: 100
+Visiting MetricsEvent,  type frame_finish_processing frameIndex 10 timestamp in msec: 109
+Visiting MetricsEvent,  type frame_creation frameIndex 11 timestamp in msec: 110
+Visiting MetricsEvent,  type frame_finish_processing frameIndex 11 timestamp in msec: 119
+Compute latency for each frame
+compute latency at frame index 0 : 8 milliseconds.
+compute latency at frame index 1 : 8 milliseconds.
+compute latency at frame index 2 : 8 milliseconds.
+compute latency at frame index 3 : 8 milliseconds.
+compute latency at frame index 4 : 8 milliseconds.
+compute latency at frame index 5 : 15 milliseconds.
+compute latency at frame index 6 : 20 milliseconds.
+compute latency at frame index 7 : 25 milliseconds.
+compute latency at frame index 8 : 24 milliseconds.
+compute latency at frame index 9 : 23 milliseconds.
+compute latency at frame index 10 : 22 milliseconds.
+compute latency at frame index 11 : 21 milliseconds.
+Total front-end processing time: 12
+Total computes in timeline are 121
+Total audio processed: 120
+
+
+End test_compute_latency_calculator()
+
+
+Begin test_metrics_latency_calculator()
+
+Timeline: 
+Visiting MetricsEvent,  type audio_arrival numberOfSamples 100 beginAssociatedFrameIndex 0 endAssociatedFrameIndex 9 timestamp in msec: 0
+Visiting MetricsEvent,  type audio_arrival numberOfSamples 100 beginAssociatedFrameIndex 10 endAssociatedFrameIndex 19 timestamp in msec: 100
+Visiting MetricsEvent,  type audio_arrival numberOfSamples 100 beginAssociatedFrameIndex 20 endAssociatedFrameIndex 29 timestamp in msec: 200
+Visiting MetricsEvent,  type audio_arrival numberOfSamples 100 beginAssociatedFrameIndex 30 endAssociatedFrameIndex 39 timestamp in msec: 300
+Visiting MetricsEvent,  type audio_arrival numberOfSamples 100 beginAssociatedFrameIndex 40 endAssociatedFrameIndex 49 timestamp in msec: 400
+Visiting MetricsEvent,  type audio_arrival numberOfSamples 100 beginAssociatedFrameIndex 50 endAssociatedFrameIndex 59 timestamp in msec: 500
+Visiting MetricsEvent,  type audio_arrival numberOfSamples 100 beginAssociatedFrameIndex 60 endAssociatedFrameIndex 69 timestamp in msec: 600
+Visiting MetricsEvent,  type audio_arrival numberOfSamples 100 beginAssociatedFrameIndex 70 endAssociatedFrameIndex 79 timestamp in msec: 700
+Visiting MetricsEvent,  type audio_arrival numberOfSamples 100 beginAssociatedFrameIndex 80 endAssociatedFrameIndex 89 timestamp in msec: 800
+Visiting MetricsEvent,  type audio_arrival numberOfSamples 100 beginAssociatedFrameIndex 90 endAssociatedFrameIndex 99 timestamp in msec: 900
+Visiting MetricsEvent,  type scorer_propagate_start_type frameIndex 10 timestamp in msec: 500
+Visiting MetricsEvent,  type scorer_propagate_end_type frameIndex 10 timestamp in msec: 600
+Visiting MetricsEvent,  type scorer_propagate_start_type frameIndex 11 timestamp in msec: 700
+Visiting MetricsEvent,  type scorer_propagate_end_type frameIndex 11 timestamp in msec: 800
+Visiting MetricsEvent,  type partial_result_build_begin frameIndex 10 timestamp in msec: 900
+Visiting MetricsEvent,  type partial_result_build_end frameIndex 10 timestamp in msec: 905
+Visiting MetricsEvent,  type partial_result_build_begin frameIndex 11 timestamp in msec: 910
+Visiting MetricsEvent,  type partial_result_build_end frameIndex 11 timestamp in msec: 919
+Visiting MetricsEvent,  type result_build_begin frameIndex 99 timestamp in msec: 1000
+Visiting MetricsEvent,  type result_build_end frameIndex 99 timestamp in msec: 1010
+Visiting MetricsEvent,  type end_of_utterance frameIndex 99 timestamp in msec: 1022
+Visiting MetricsEvent,  type recognizer_start_type timestamp in msec: 3
+Visiting MetricsEvent,  type recognizer_setup_finish_type timestamp in msec: 6
+Scoring Time Msec: 200
+Result building latency msec: 10
+Total partial result building latency msec: 14
+Stt latency msec: 122
+Recognizer Startup Msec: 3
+Total audio samples: 1000
+Total audio samples msec: 2000
+end-of-utterance arrival difference from first event msec: 900
+Total audio delivery ratio: 2219
+
+
+Now add a makeAppendFramesLastAudioArrival, this simulates the flushing of the queue on end-of-utterance
+
+Timeline: 
+Visiting MetricsEvent,  type audio_arrival numberOfSamples 100 beginAssociatedFrameIndex 0 endAssociatedFrameIndex 9 timestamp in msec: 0
+Visiting MetricsEvent,  type audio_arrival numberOfSamples 100 beginAssociatedFrameIndex 10 endAssociatedFrameIndex 19 timestamp in msec: 100
+Visiting MetricsEvent,  type audio_arrival numberOfSamples 100 beginAssociatedFrameIndex 20 endAssociatedFrameIndex 29 timestamp in msec: 200
+Visiting MetricsEvent,  type audio_arrival numberOfSamples 100 beginAssociatedFrameIndex 30 endAssociatedFrameIndex 39 timestamp in msec: 300
+Visiting MetricsEvent,  type audio_arrival numberOfSamples 100 beginAssociatedFrameIndex 40 endAssociatedFrameIndex 49 timestamp in msec: 400
+Visiting MetricsEvent,  type audio_arrival numberOfSamples 100 beginAssociatedFrameIndex 50 endAssociatedFrameIndex 59 timestamp in msec: 500
+Visiting MetricsEvent,  type audio_arrival numberOfSamples 100 beginAssociatedFrameIndex 60 endAssociatedFrameIndex 69 timestamp in msec: 600
+Visiting MetricsEvent,  type audio_arrival numberOfSamples 100 beginAssociatedFrameIndex 70 endAssociatedFrameIndex 79 timestamp in msec: 700
+Visiting MetricsEvent,  type audio_arrival numberOfSamples 100 beginAssociatedFrameIndex 80 endAssociatedFrameIndex 89 timestamp in msec: 800
+Visiting MetricsEvent,  type audio_arrival numberOfSamples 100 beginAssociatedFrameIndex 90 endAssociatedFrameIndex 99 timestamp in msec: 900
+Visiting MetricsEvent,  type scorer_propagate_start_type frameIndex 10 timestamp in msec: 500
+Visiting MetricsEvent,  type scorer_propagate_end_type frameIndex 10 timestamp in msec: 600
+Visiting MetricsEvent,  type scorer_propagate_start_type frameIndex 11 timestamp in msec: 700
+Visiting MetricsEvent,  type scorer_propagate_end_type frameIndex 11 timestamp in msec: 800
+Visiting MetricsEvent,  type partial_result_build_begin frameIndex 10 timestamp in msec: 900
+Visiting MetricsEvent,  type partial_result_build_end frameIndex 10 timestamp in msec: 905
+Visiting MetricsEvent,  type partial_result_build_begin frameIndex 11 timestamp in msec: 910
+Visiting MetricsEvent,  type partial_result_build_end frameIndex 11 timestamp in msec: 919
+Visiting MetricsEvent,  type result_build_begin frameIndex 99 timestamp in msec: 1000
+Visiting MetricsEvent,  type result_build_end frameIndex 99 timestamp in msec: 1010
+Visiting MetricsEvent,  type end_of_utterance frameIndex 99 timestamp in msec: 1022
+Visiting MetricsEvent,  type recognizer_start_type timestamp in msec: 3
+Visiting MetricsEvent,  type recognizer_setup_finish_type timestamp in msec: 6
+Visiting MetricsEvent,  type end_of_session_associated_frames numberOfSamples 0 beginAssociatedFrameIndex 0 endAssociatedFrameIndex 99 timestamp in msec: 950
+Scoring Time Msec: 200
+Result building latency msec: 10
+Total partial result building latency msec: 14
+Stt latency msec: 72
+Recognizer Startup Msec: 3
+Total audio samples: 1000
+Total audio samples msec: 2000
+end-of-utterance arrival difference from first event msec: 900
+Total audio delivery ratio: 2219
+
+
+End test_metrics_latency_calculator()
+
+
+Begin test_producer_consumer()
+
+Test that we can start and shutdown a ProducerConsumer.
+
+Test that we can push objects to a ProducerConsumer.
+Processed Item: test-data_0
+Processed Item: test-data_1
+Processed Item: test-data_2
+Processed Item: test-data_3
+Processed Item: test-data_4
+Processed Item: test-data_5
+Processed Item: test-data_6
+Processed Item: test-data_7
+Processed Item: test-data_8
+Processed Item: test-data_9
+received 10 items.
+
+Test that we can push objects, with synchronization after every push to a ProducerConsumer.
+Processed Item: test-data_0
+received 1 items.
+Processed Item: test-data_1
+received 2 items.
+Processed Item: test-data_2
+received 3 items.
+Processed Item: test-data_3
+received 4 items.
+Processed Item: test-data_4
+received 5 items.
+Processed Item: test-data_5
+received 6 items.
+Processed Item: test-data_6
+received 7 items.
+Processed Item: test-data_7
+received 8 items.
+Processed Item: test-data_8
+received 9 items.
+Processed Item: test-data_9
+received 10 items.
+
+Loop a test and ensure we always process expected number of objects (synchronous behavior).
+
+Passed 100 tests of 10 items.
+
+Test that exceptions do not propagate until we process one item after the exception count.
+Processed Item: test-data_0
+Processed Item: test-data_1
+Processed Item: test-data_2
+Processed Item: test-data_3
+Processed Item: test-data_4
+Processed Item: test-data_5
+Processed Item: test-data_6
+Processed Item: test-data_7
+Processed Item: test-data_8
+Processed Item: test-data_9
+received 10 items.
+
+push another item and an exception should be thrown.
+Processed Item: test-data_11
+Caught C++ exception: Reached exception count.
+
+Test that we can shutdown while emptying the queue.
+
+Successfully joined the empty queue thread after shutdown.
+
+
+End test_producer_consumer()
+
+
+Begin test_pipeline()
+Increment Processor processor_0 processed payload with value 0
+Increment Processor processor_1 processed payload with value 1
+Increment Processor processor_2 processed payload with value 2
+Increment Processor processor_3 processed payload with value 3
+Increment Processor processor_4 processed payload with value 4
+Increment Processor processor_5 processed payload with value 5
+Increment Processor processor_6 processed payload with value 6
+Increment Processor processor_7 processed payload with value 7
+Increment Processor processor_8 processed payload with value 8
+Increment Processor processor_9 processed payload with value 9
+Increment Processor processor_0 processed payload with value 0
+Increment Processor processor_1 processed payload with value 1
+Increment Processor processor_2 processed payload with value 2
+Increment Processor processor_3 processed payload with value 3
+Increment Processor processor_4 processed payload with value 4
+Double Processor processor_5 processed payload with value 5
+Increment Processor processor_6 processed payload with value 10
+Increment Processor processor_7 processed payload with value 11
+Increment Processor processor_8 processed payload with value 12
+Increment Processor processor_9 processed payload with value 13
+
+Try to reset a processor with nonexistent name.
+Caught expected error: Processor named non-existent-processor not a part of the pipeline. resetProcessor() failed.
+
+Try to append a processor with an existing name
+Caught expected error: Processor named processor_5 already exists in the pipeline. appendProcessor() failed.
+
+Test discontinuing processing of a payload.
+Increment Processor processor_0 processed payload with value 0
+Increment Processor processor_1 processed payload with value 1
+Increment Processor processor_2 processed payload with value 2
+Do not continue Processor processor_3 processed payload with value 3
+
+
+End test_pipeline()
+
+
+Begin test_symbol_classes()
+Looking for symbol NIL: 1
+Looking for symbol NSN: 1
+Looking for symbol DOESNOTEXIST: 0
+Caught expected runtime error: no class found: NO_CLASS
+
+
+End test_symbol_classes()

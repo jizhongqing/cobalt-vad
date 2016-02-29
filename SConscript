@@ -9,7 +9,8 @@ dirs = (
     # TODO, right now, the ordering of the directories is also the ordering of dependencies
     # SCons needs to scan the SConscript of a dependent directory first.
     # We should use the global function in CppTools to re-order and make things automatic.
-    './cpp/api',
+    './cpp/util',
+    './cpp/config',
     )
 
 # We want these top-level files to appear in the build directory:

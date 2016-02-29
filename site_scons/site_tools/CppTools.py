@@ -1,9 +1,10 @@
 # Tools for compiling CPP.
 import os, sys
 
-'''
+
 util_libs = ['libutil.a',]
 config_libs = ['libconfig.a',]
+'''
 model_libs = ['libmodel.a',]
 result_libs = ['libresult.a',]
 recognizer_libs = ['librecognizer.a',]
@@ -74,20 +75,7 @@ def add_external_libs(env):
 
 def get_dependencies_for_module(module):
     module_depends = list()
-    elif module == "cobalt_client":
-        module_depends.append('cobalt_api')
-    elif module == "cobalt_api":
-        module_depends.append('recognizer')
-    elif module == "recognizer":
-        module_depends.append('model')
-    elif module == 'model':
-        module_depends.append('decoder')
-        module_depends.append('results')
-    elif module == 'results':
-        module_depends.append('config')
-    elif module == "decoder":
-        module_depends.append('config')
-    elif module == 'config':
+    if module == 'config':
         module_depends.append('util')
     elif module == 'util':
          module_depends.append('boost')
@@ -125,7 +113,7 @@ def get_all_libs(module_name, all_libs):
         if lib not in all_libs:
             all_libs.append(lib)
 
-def add_compile_flags(cpp_flags, build_type, with_valgrind):
+def add_compile_flags(cpp_flags, build_type):
     # add some flags for kaldi to compile
     if build_type == 'debug':
         cpp_flags.append('-g')
@@ -137,8 +125,6 @@ def add_compile_flags(cpp_flags, build_type, with_valgrind):
     cpp_flags.append('-DHAVE_ATLAS')
     cpp_flags.append('-flax-vector-conversions')
     cpp_flags.append('-DHAVE_POSIX_MEMALIGN')
-    if with_valgrind:
-        cpp_flags.append('-DVALGRIND')
     if 'linux' in sys.platform:
         cpp_flags.append('-fPIC')
 
@@ -180,7 +166,7 @@ def generate(env):
             for module in modules:
                 get_all_libs(module, cpp_file_and_libs)
 
-        add_compile_flags(cpp_flags, env['BUILD_TYPE'], env['VALGRIND'])
+        add_compile_flags(cpp_flags, env['BUILD_TYPE'])
         static_lib_node = libenv.StaticLibrary(module_name, cpp_file_and_libs, CPPPATH=include_dirs, CPPFLAGS=cpp_flags)
         global_depends_dict[module_name] = static_lib_node
         return static_lib_node

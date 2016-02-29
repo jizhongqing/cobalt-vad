@@ -1,3 +1,4 @@
+
 namespace vad
 {
     class VadEvents;

@@ -1,0 +1,368 @@
+
+
+Begin test_default_config()
+Log Level: Info, LOG: Reading configuration file data/models/dummy_config/empty.config
+key: debug.save_lattices, value: 0, description: parameter on whether we save a lattice, type: bool
+key: debug.save_lattices_path, value: , description: directory where we save lattices to., type: string
+key: endpoint.kaldi_online_endpointer_config, value: , description: filepath for kaldi's online endpointer configs, used only if endpointer.type is kaldi-online., type: path
+key: endpoint.max_relative_cost, value: 100, description: maximum relative cost, type: float
+key: endpoint.mininum_utterance_length_frames, value: 10, description: minimum length of an utterance before we end-point, type: int
+key: endpoint.must_contain_silence, value: 1, description: utterance must contain silence to be endpointed, type: bool
+key: endpoint.must_reach_final, value: 1, description: result building lattice beam, type: bool
+key: endpoint.silence_phone_string, value: , description: a string of silence phonemes, type: string
+key: endpoint.trailing_silence_frames, value: 10, description: number of trailing silence frames, type: int
+key: endpoint.type, value: all_speech, description: type of endpointer, type: string
+key: fe.acoustic_sampling_rate_hz, value: 8000, description: sampling rate for audio, the model should be tuned to this sampling rate. Behavior is undefined if audio of mis-matched sampling rate is pushed to the engine.8000 means 8KZ, type: float
+key: fe.feature_config_filepath, value: , description: filepath of feature configuration file, type: path
+key: fe.feature_type, value: mfcc, description: type of feature, type: string
+key: fe.ivector-extraction-config, value: , description: ivector extraction config, type: path
+key: fe.ivector_extractor_info.greedy_ivector_extractor, value: 0, description: If true, use greedy ivector extraction., type: bool
+key: fe.ivector_extractor_info.use_most_recent_ivector, value: 0, description: Uses the most recent ivector available when set, may slightly improve accuracy but has the drawback thatwe will be non-deterministic(!!!) because features will change based on how fast audio was pushed, use only whenWER gain is significant., type: bool
+key: model.type, value: asr, description: The type of model, default is asr, type: string
+key: results.emit_timestamps, value: 0, description: whether to produce word timestamps; default is NO., type: bool
+key: results.formatter_config_filepath, value: , description: Path to formatter config file,empty path means formatter will not be loaded, type: path
+key: results.formatter_type, value: , description: Determines the formatter type applied on the final output; an empty string means no formatter , type: string
+key: results.nbest, value: 1, description: Nbest value, if set to N , we will generate 0-N results, currently not generates nbest., type: int
+key: results.nbest_generation_strategy, value: , description: nbest generation algorithm. If this is empty, we will not generate an nbest. If it is 'lattice', we will generate the nbest from the lattice., type: string
+key: results.partial_results.emit_frequency_frames, value: -1, description: When set to a positive number N, the decoder will look for a partial result every N frames. Partial results is off if set to <= 0., type: int
+key: results.word_boundary_filepath, value: , description: file needed to align words with audio frames in order to obtain timestamps (word_boundary.int), type: path
+key: scorer.acoustic-scale, value: 0.1, description: scales the acoustic models scores by this number, type: float
+key: scorer.acoustic_model_filepath, value: , description: filepath of the acoustic model we'll use for scoring, type: path
+key: scorer.quantization_seg_length, value: 4, description: Length of the quantized segment for quantized_segmented scorer we're gonna use, type: int
+key: scorer.scorer_type, value: kaldi-mlp, description: type of scorer we use during acoustic scoring, type: string
+key: scorer.skip_num_frames, value: -1, description: The number of batch size for frames for which only one will be scored; negative number to disable frame skipping, type: int
+key: search.beam, value: 15.0, description: decoder's beam, type: float
+key: search.decode_fst_filepath, value: , description: filepath of the fst we'll use for decoding (HCLG.fst), type: path
+key: search.decode_fst_type, value: vector_fst, description: Type of decode-fst., type: string
+key: search.decoder_type, value: kaldi-lattice, description: type of decoder we use during search, type: string
+key: search.g_fst_filepath, value: , description: filepath of the fst we'll use for decoding (G.fst), to be used with dynamic decoding, type: path
+key: search.hcl_fst_filepath, value: , description: filepath of the HCL fst we'll use for decoding (HCL.fst), to be used with dynamic decoding, type: path
+key: search.lattice_beam, value: 6.0, description: result building lattice beam, type: float
+key: search.max_active, value: 7000, description: maxinum number of toks during decoding, enforced between PNE and PE, type: float
+key: search.output_symbol_table_filepath, value: , description: filepath to output symbol table, type: path
+
+
+Finish test_default_config()
+
+
+Begin test_user_config()
+Log Level: Info, LOG: Reading configuration file data/models/dummy_config/example.config
+key: debug.save_lattices, value: 0, description: parameter on whether we save a lattice, type: bool
+key: debug.save_lattices_path, value: , description: directory where we save lattices to., type: string
+key: endpoint.kaldi_online_endpointer_config, value: , description: filepath for kaldi's online endpointer configs, used only if endpointer.type is kaldi-online., type: path
+key: endpoint.max_relative_cost, value: 100, description: maximum relative cost, type: float
+key: endpoint.mininum_utterance_length_frames, value: 10, description: minimum length of an utterance before we end-point, type: int
+key: endpoint.must_contain_silence, value: 1, description: utterance must contain silence to be endpointed, type: bool
+key: endpoint.must_reach_final, value: 1, description: result building lattice beam, type: bool
+key: endpoint.silence_phone_string, value: , description: a string of silence phonemes, type: string
+key: endpoint.trailing_silence_frames, value: 10, description: number of trailing silence frames, type: int
+key: endpoint.type, value: all_speech, description: type of endpointer, type: string
+key: fe.acoustic_sampling_rate_hz, value: 8000, description: sampling rate for audio, the model should be tuned to this sampling rate. Behavior is undefined if audio of mis-matched sampling rate is pushed to the engine.8000 means 8KZ, type: float
+key: fe.feature_config_filepath, value: /external/models/kaldi_online_ex/nnet_a_gpu_online/conf/online_nnet2_decoding_cobalt.conf, description: filepath of feature configuration file, type: path
+key: fe.feature_type, value: mfcc, description: type of feature, type: string
+key: fe.ivector-extraction-config, value: /external/models/kaldi_online_ex/nnet_a_gpu_online/conf/ivector_extractor.conf, description: ivector extraction config, type: path
+key: fe.ivector_extractor_info.greedy_ivector_extractor, value: 0, description: If true, use greedy ivector extraction., type: bool
+key: fe.ivector_extractor_info.use_most_recent_ivector, value: 0, description: Uses the most recent ivector available when set, may slightly improve accuracy but has the drawback thatwe will be non-deterministic(!!!) because features will change based on how fast audio was pushed, use only whenWER gain is significant., type: bool
+key: model.type, value: asr, description: The type of model, default is asr, type: string
+key: results.emit_timestamps, value: 0, description: whether to produce word timestamps; default is NO., type: bool
+key: results.formatter_config_filepath, value: , description: Path to formatter config file,empty path means formatter will not be loaded, type: path
+key: results.formatter_type, value: , description: Determines the formatter type applied on the final output; an empty string means no formatter , type: string
+key: results.nbest, value: 1, description: Nbest value, if set to N , we will generate 0-N results, currently not generates nbest., type: int
+key: results.nbest_generation_strategy, value: , description: nbest generation algorithm. If this is empty, we will not generate an nbest. If it is 'lattice', we will generate the nbest from the lattice., type: string
+key: results.partial_results.emit_frequency_frames, value: -1, description: When set to a positive number N, the decoder will look for a partial result every N frames. Partial results is off if set to <= 0., type: int
+key: results.word_boundary_filepath, value: , description: file needed to align words with audio frames in order to obtain timestamps (word_boundary.int), type: path
+key: scorer.acoustic-scale, value: 0.1, description: scales the acoustic models scores by this number, type: float
+key: scorer.acoustic_model_filepath, value: /external/models/kaldi_online_ex/nnet_a_gpu_online/smbr_epoch2.mdl, description: filepath of the acoustic model we'll use for scoring, type: path
+key: scorer.quantization_seg_length, value: 4, description: Length of the quantized segment for quantized_segmented scorer we're gonna use, type: int
+key: scorer.scorer_type, value: kaldi-gmm, description: type of scorer we use during acoustic scoring, type: string
+key: scorer.skip_num_frames, value: -1, description: The number of batch size for frames for which only one will be scored; negative number to disable frame skipping, type: int
+key: search.beam, value: 15.0, description: decoder's beam, type: float
+key: search.decode_fst_filepath, value: /external/models/kaldi_online_ex/graph/HCLG.fst, description: filepath of the fst we'll use for decoding (HCLG.fst), type: path
+key: search.decode_fst_type, value: vector_fst, description: Type of decode-fst., type: string
+key: search.decoder_type, value: kaldi-fast, description: type of decoder we use during search, type: string
+key: search.g_fst_filepath, value: , description: filepath of the fst we'll use for decoding (G.fst), to be used with dynamic decoding, type: path
+key: search.hcl_fst_filepath, value: , description: filepath of the HCL fst we'll use for decoding (HCL.fst), to be used with dynamic decoding, type: path
+key: search.lattice_beam, value: 6.0, description: result building lattice beam, type: float
+key: search.max_active, value: 7000, description: maxinum number of toks during decoding, enforced between PNE and PE, type: float
+key: search.output_symbol_table_filepath, value: /external/models/kaldi_online_ex/graph/words.txt, description: filepath to output symbol table, type: path
+
+
+Finish test_user_config()
+
+
+Begin test_override_config()
+Log Level: Info, LOG: Reading configuration file data/models/dummy_config/example.config
+Log Level: Info, LOG: Overriding parameter: search.decoder_type as override.decoder_type
+Log Level: Info, LOG: Overriding parameter: search.decode_fst_filepath as override.decode_fst_filepath
+key: debug.save_lattices, value: 0, description: parameter on whether we save a lattice, type: bool
+key: debug.save_lattices_path, value: , description: directory where we save lattices to., type: string
+key: endpoint.kaldi_online_endpointer_config, value: , description: filepath for kaldi's online endpointer configs, used only if endpointer.type is kaldi-online., type: path
+key: endpoint.max_relative_cost, value: 100, description: maximum relative cost, type: float
+key: endpoint.mininum_utterance_length_frames, value: 10, description: minimum length of an utterance before we end-point, type: int
+key: endpoint.must_contain_silence, value: 1, description: utterance must contain silence to be endpointed, type: bool
+key: endpoint.must_reach_final, value: 1, description: result building lattice beam, type: bool
+key: endpoint.silence_phone_string, value: , description: a string of silence phonemes, type: string
+key: endpoint.trailing_silence_frames, value: 10, description: number of trailing silence frames, type: int
+key: endpoint.type, value: all_speech, description: type of endpointer, type: string
+key: fe.acoustic_sampling_rate_hz, value: 8000, description: sampling rate for audio, the model should be tuned to this sampling rate. Behavior is undefined if audio of mis-matched sampling rate is pushed to the engine.8000 means 8KZ, type: float
+key: fe.feature_config_filepath, value: /external/models/kaldi_online_ex/nnet_a_gpu_online/conf/online_nnet2_decoding_cobalt.conf, description: filepath of feature configuration file, type: path
+key: fe.feature_type, value: mfcc, description: type of feature, type: string
+key: fe.ivector-extraction-config, value: /external/models/kaldi_online_ex/nnet_a_gpu_online/conf/ivector_extractor.conf, description: ivector extraction config, type: path
+key: fe.ivector_extractor_info.greedy_ivector_extractor, value: 0, description: If true, use greedy ivector extraction., type: bool
+key: fe.ivector_extractor_info.use_most_recent_ivector, value: 0, description: Uses the most recent ivector available when set, may slightly improve accuracy but has the drawback thatwe will be non-deterministic(!!!) because features will change based on how fast audio was pushed, use only whenWER gain is significant., type: bool
+key: model.type, value: asr, description: The type of model, default is asr, type: string
+key: results.emit_timestamps, value: 0, description: whether to produce word timestamps; default is NO., type: bool
+key: results.formatter_config_filepath, value: , description: Path to formatter config file,empty path means formatter will not be loaded, type: path
+key: results.formatter_type, value: , description: Determines the formatter type applied on the final output; an empty string means no formatter , type: string
+key: results.nbest, value: 1, description: Nbest value, if set to N , we will generate 0-N results, currently not generates nbest., type: int
+key: results.nbest_generation_strategy, value: , description: nbest generation algorithm. If this is empty, we will not generate an nbest. If it is 'lattice', we will generate the nbest from the lattice., type: string
+key: results.partial_results.emit_frequency_frames, value: -1, description: When set to a positive number N, the decoder will look for a partial result every N frames. Partial results is off if set to <= 0., type: int
+key: results.word_boundary_filepath, value: , description: file needed to align words with audio frames in order to obtain timestamps (word_boundary.int), type: path
+key: scorer.acoustic-scale, value: 0.1, description: scales the acoustic models scores by this number, type: float
+key: scorer.acoustic_model_filepath, value: /external/models/kaldi_online_ex/nnet_a_gpu_online/smbr_epoch2.mdl, description: filepath of the acoustic model we'll use for scoring, type: path
+key: scorer.quantization_seg_length, value: 4, description: Length of the quantized segment for quantized_segmented scorer we're gonna use, type: int
+key: scorer.scorer_type, value: kaldi-gmm, description: type of scorer we use during acoustic scoring, type: string
+key: scorer.skip_num_frames, value: -1, description: The number of batch size for frames for which only one will be scored; negative number to disable frame skipping, type: int
+key: search.beam, value: 15.0, description: decoder's beam, type: float
+key: search.decode_fst_filepath, value: override.decode_fst_filepath, description: filepath of the fst we'll use for decoding (HCLG.fst), type: path
+key: search.decode_fst_type, value: vector_fst, description: Type of decode-fst., type: string
+key: search.decoder_type, value: override.decoder_type, description: type of decoder we use during search, type: string
+key: search.g_fst_filepath, value: , description: filepath of the fst we'll use for decoding (G.fst), to be used with dynamic decoding, type: path
+key: search.hcl_fst_filepath, value: , description: filepath of the HCL fst we'll use for decoding (HCL.fst), to be used with dynamic decoding, type: path
+key: search.lattice_beam, value: 6.0, description: result building lattice beam, type: float
+key: search.max_active, value: 7000, description: maxinum number of toks during decoding, enforced between PNE and PE, type: float
+key: search.output_symbol_table_filepath, value: /external/models/kaldi_online_ex/graph/words.txt, description: filepath to output symbol table, type: path
+
+
+Finish test_override_config()
+
+
+Begin test_parent_path()
+Log Level: Info, LOG: Reading configuration file data/models/dummy_config/empty.config
+Parent path of data/models/dummy_config/empty.config is data/models/dummy_config
+
+
+Finish test_parent_path()
+
+
+Begin test_decoder_configs()
+
+Test conversion of LatticeFasterDecoderConfig to DecoderConfig and back
+
+Default LatticeFasterDecoderConfig
+kaldi::LatticeFasterDecoderConfig
+ret.beam 16
+ret.beam_delta 0.5
+ret.hash_ratio 2
+ret.lattice_beam  10
+ret.max_active 2147483647
+ret.min_active 200
+ret.prune_interval 25
+ret.prune_scale 0.1
+
+LatticeFasterDecoderConfig to DecoderConfigs
+DecoderConfig
+ret.beam 16
+ret.beam_delta 0.5
+ret.hash_ratio 2
+ret.lattice_beam  10
+ret.max_active 2147483647
+ret.min_active 200
+ret.prune_interval 25
+ret.prune_scale 0.1
+
+LatticeFasterDecoderConfig from DecoderConfigs
+kaldi::LatticeFasterDecoderConfig
+ret.beam 16
+ret.beam_delta 0.5
+ret.hash_ratio 2
+ret.lattice_beam  10
+ret.max_active 2147483647
+ret.min_active 200
+ret.prune_interval 25
+ret.prune_scale 0.1
+
+Test conversion of FasterDecoderOptions to DecoderConfig and back
+
+Default FasterDecoderOptions
+kaldi::FasterDecoderOptions
+ret.beam 16
+ret.beam_delta 0.5
+ret.hash_ratio 2
+ret.max_active 2147483647
+ret.min_active 20
+
+FasterDecoderOptions to DecoderConfigs
+DecoderConfig
+ret.beam 16
+ret.beam_delta 0.5
+ret.hash_ratio 2
+ret.lattice_beam  -1
+ret.max_active 2147483647
+ret.min_active 20
+ret.prune_interval -1
+ret.prune_scale -1
+
+FasterDecoderOptions from DecoderConfigs
+kaldi::FasterDecoderOptions
+ret.beam 16
+ret.beam_delta 0.5
+ret.hash_ratio 2
+ret.max_active 2147483647
+ret.min_active 20
+
+
+Finish test_decoder_configs()
+
+
+Begin test_endpoint_config()
+Log Level: Info, LOG: Reading configuration file data/models/dummy_config/example.config
+
+EndPointRule: 
+rule.maxRelativeCost: 100
+rule.minUtteranceLengthFrames: 10
+rule.mustContainSilence: 1
+rule.mustReachFinal: 1
+rule.trailingSilenceFrames: 10
+
+EndpointConfig: 
+config.silencePhoneString: 
+config.type: all_speech
+
+EndPointRule: 
+rule.maxRelativeCost: 100
+rule.minUtteranceLengthFrames: 10
+rule.mustContainSilence: 1
+rule.mustReachFinal: 1
+rule.trailingSilenceFrames: 10
+
+
+Finish test_endpoint_config()
+
+
+Begin test_kaldi_endpoint_config()
+This is the default kaldi online endpointing config.
+
+kaldi::OnlineEndpointConfig: 
+config.silence_phones: 
+Rule 1: 
+
+kaldi::OnlineEndpointRule: 
+must_contain_nonsilence: 0
+min_trailing_silence: 5
+max_relative_cost: inf
+min_utterance_length: 0
+
+Rule 2: 
+
+kaldi::OnlineEndpointRule: 
+must_contain_nonsilence: 1
+min_trailing_silence: 0.5
+max_relative_cost: 2
+min_utterance_length: 0
+
+Rule 3: 
+
+kaldi::OnlineEndpointRule: 
+must_contain_nonsilence: 1
+min_trailing_silence: 1
+max_relative_cost: 8
+min_utterance_length: 0
+
+Rule 4: 
+
+kaldi::OnlineEndpointRule: 
+must_contain_nonsilence: 1
+min_trailing_silence: 2
+max_relative_cost: inf
+min_utterance_length: 0
+
+Rule 5: 
+
+kaldi::OnlineEndpointRule: 
+must_contain_nonsilence: 0
+min_trailing_silence: 0
+max_relative_cost: inf
+min_utterance_length: 20
+
+Use a non-default kaldi online endpointing config.
+
+kaldi::OnlineEndpointConfig: 
+config.silence_phones: 
+Rule 1: 
+
+kaldi::OnlineEndpointRule: 
+must_contain_nonsilence: 0
+min_trailing_silence: 10000
+max_relative_cost: 12345
+min_utterance_length: 5000
+
+Rule 2: 
+
+kaldi::OnlineEndpointRule: 
+must_contain_nonsilence: 0
+min_trailing_silence: 20000
+max_relative_cost: 2345
+min_utterance_length: 2000
+
+Rule 3: 
+
+kaldi::OnlineEndpointRule: 
+must_contain_nonsilence: 1
+min_trailing_silence: 1
+max_relative_cost: 8
+min_utterance_length: 0
+
+Rule 4: 
+
+kaldi::OnlineEndpointRule: 
+must_contain_nonsilence: 1
+min_trailing_silence: 2
+max_relative_cost: inf
+min_utterance_length: 0
+
+Rule 5: 
+
+kaldi::OnlineEndpointRule: 
+must_contain_nonsilence: 0
+min_trailing_silence: 0
+max_relative_cost: inf
+min_utterance_length: 20
+
+
+Finish test_kaldi_endpoint_config()
+
+
+Begin test_model_config()
+
+testing round-trip serialization
+serialized model config: {"cobalt_object":"model_json","model_path":"dummy_path","overrides":[],"version":"1"}
+
+end testing round-trip serialization
+
+testing round-trip serialization
+serialized model config: {"cobalt_object":"model_json","model_path":"dummy_path","overrides":[{"param":"param1","value":"value1"}],"version":"1"}
+
+end testing round-trip serialization
+
+testing round-trip serialization
+serialized model config: {"cobalt_object":"model_json","model_path":"dummy_path","overrides":[{"param":"param1","value":"value1"},{"param":"param2","value":"value2"}],"version":"1"}
+
+end testing round-trip serialization
+
+Test that we handle a  non-json model string.
+
+
+End test_model_config()
+
+
+Begin test_recognizer_construct()
+test a recognizer construct with no recognizer-type
+serialized construct: {"cobalt_object":"recognizer_construct","model_domain":"domain1","modelset_id":"model1","recognizer_type":"","version":"1"}
+test a recognizer construct with recognizer-type
+serialized construct: {"cobalt_object":"recognizer_construct","model_domain":"domain1","modelset_id":"model1","recognizer_type":"asr","version":"1"}
+test a recognizer construct with transcripts
+serialized construct: {"cobalt_object":"recognizer_construct","model_domain":"domain1","modelset_id":"model1","recognizer_type":"asr","transcripts":["lets recognize speech","hello world"],"version":"1"}
+
+
+End test_recognizer_construct()

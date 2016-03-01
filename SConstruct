@@ -20,6 +20,10 @@ vars.Add(BoolVariable('NO_DOC',
                       'Set to True to skip documentation building',
                       False))
 
+vars.Add(BoolVariable('NO_TESTS',
+                      'Set to True to enable valgrind build',
+                      False))
+
 vars.Add(EnumVariable('BUILD_TYPE', 'build type', 'debug',
                       allowed_values=('debug', 'release'),
                       map={}, ignorecase=2))

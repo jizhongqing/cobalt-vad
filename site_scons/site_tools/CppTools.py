@@ -181,7 +181,7 @@ def generate(env):
         for module in modules:
             get_all_libs(module, cpp_file_and_libs)
 
-        add_compile_flags(cpp_flags, env['BUILD_TYPE'], env['VALGRIND'])
+        add_compile_flags(cpp_flags, env['BUILD_TYPE'])
         if 'linux' in sys.platform:
             libenv.Append(LINKFLAGS=['-fPIC'])
         if sys.platform == 'darwin':
@@ -201,7 +201,7 @@ def generate(env):
         for module in modules:
             get_all_libs(module, cpp_file_and_libs)
             #cpp_file_and_libs.extend(global_depends_dict[module])
-        add_compile_flags(cpp_flags, env['BUILD_TYPE'], env['VALGRIND'])
+        add_compile_flags(cpp_flags, env['BUILD_TYPE'])
         if sys.platform == 'darwin':
             envExe.Append(LINKFLAGS=['-framework', 'Accelerate'])
         #if 'linux' in str(sys.platform):

@@ -31,11 +31,34 @@ void printVadEvents(const VadEvents& events)
     }
 }
 
-void deserizalizeAndPrint(const string& serializedEvents)
+VadEvents deserizalizeAndPrint(const string& serializedEvents)
 {
     VadEvents events;
     deserializeVadEvents(serializedEvents, events);
     printVadEvents(events);
+    return events;
+}
+
+bool compareEvent(const VadEvent& eventA, const VadEvent& eventB)
+{
+    return (eventA.eventOccurenceMsec==eventB.eventOccurenceMsec &&
+            eventA.vadEventType == eventB.vadEventType);
+}
+
+bool compareEvents(const VadEvents& eventsA, const VadEvents& eventsB)
+{
+    if (eventsA.size() != eventsB.size())
+    {
+        return false;
+    }
+    for (size_t i = 0; i < eventsA.size(); ++i)
+    {
+        if (!compareEvent(eventsA[i], eventsB[i]))
+        {
+            return false;
+        }
+    }
+    return true;
 }
 
 void test_vad_events()
@@ -50,13 +73,21 @@ void test_vad_events()
     string serializedEvents = makeAndPrintJson(events);
 
     cout << endl << "de-serialized vad events:" << endl;
-    deserizalizeAndPrint(serializedEvents);
-
+    VadEvents deserialziedEvents = deserizalizeAndPrint(serializedEvents);
+    if(!compareEvents(events, deserialziedEvents))
+    {
+        throw std::runtime_error("serialized and deserialized events not equal");
+    }
     cout << endl << "test no vad events" << endl;
     VadEvents emptyEvents;
     string serializedEmptyEvents = makeAndPrintJson(emptyEvents);
     cout << endl << "de-serialized empty vad events:" << endl;
-    deserizalizeAndPrint(serializedEmptyEvents);
+    VadEvents deserializedEmptyEvents;deserizalizeAndPrint(serializedEmptyEvents);
+
+    if(!compareEvents(emptyEvents, deserializedEmptyEvents))
+    {
+        throw std::runtime_error("serialized and deserialized events not equal");
+    }
     cout << endl << endl << "End test_vad_events()" << endl;
 }
 

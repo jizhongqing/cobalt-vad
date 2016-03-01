@@ -4,6 +4,7 @@ import os
 base_files = [
     'io.cpp',
     'logger.cpp',
+    'vad_events.cpp',
     ]
 
 cpp_flags = ['-Werror', '-Wall',]
@@ -11,7 +12,5 @@ include_dirs = ['..',]
 module_name = 'util'
 env.CompileToLibraries(base_files, module_name, include_dirs)
 
-'''
 test_util = env.BuildExecutable('test_util', 'test_util.cpp', include_dirs, module_name, cpp_flags)
 env.RunLogrefTest(test_util, 'test_util')
-'''

@@ -1,0 +1,22 @@
+
+
+Begin test_vad_events()
+Serialized vad events 
+{"cobalt_object":"vad_events","events":[{"event_occurence_msec":10,"event_type":"start_of_speech"},{"event_occurence_msec":200,"event_type":"end_of_speech"},{"event_occurence_msec":210,"event_type":"start_of_speech"},{"event_occurence_msec":300,"event_type":"end_of_speech"}],"version":"1"}
+
+de-serialized vad events:
+Printing 4 VAD events.
+event 0 type: start of speech event occurence msec: 10
+event 1 type: end of speech event occurence msec: 200
+event 2 type: start of speech event occurence msec: 210
+event 3 type: end of speech event occurence msec: 300
+
+test no vad events
+Serialized vad events 
+{"cobalt_object":"vad_events","events":null,"version":"1"}
+
+de-serialized empty vad events:
+Printing 0 VAD events.
+
+
+End test_vad_events()

@@ -10,7 +10,7 @@ extern "C"
     * this api is to convert audio to speech start and speech end timestamps.
     *
     * There are two main types of 'objects' in this API: Models and Recognizers
-    * 
+    *
      * A Model is an encapsulation for machine-learned artifacts that were trained in
      * offline, supervised fashion. Models are the 'brain' of our system. Models own the
      * the accuracy or recognition.
@@ -46,7 +46,7 @@ extern "C"
      *
      * The API delivers per-recognition results in asynchronous fashion. To allow the client to map a result to a recognizer,
      * the result (and metrics) callbacks contain a field for the id of the recognizer. Each recognizer object delivers
-     * (0+) results per lifetime, depending on the underlying model and Recognizer_ API calls. 
+     * (0+) results per lifetime, depending on the underlying model and Recognizer_ API calls.
     #include "api_types.h"
     **/
 
@@ -59,7 +59,7 @@ COBALTVAD ApiReturn Api_NewRecognizer(CobaltString recognizerIdC, CobaltString m
 COBALTVAD ApiReturn Api_DeleteRecgonizer(CobaltString recognizerIdC);
 
 COBALTVAD ApiReturn Api_PushEvent(CobaltString recognizerIdC, RecognitionEvent* event);
-COBALTVAD ApiReturn Api_RegisterLoggingCallback(Logging_Callback callback);/
+COBALTVAD ApiReturn Api_RegisterLoggingCallback(Logging_Callback callback);
 
 }
 #endif /* COBALT_GUARD_COBALTVAD_H

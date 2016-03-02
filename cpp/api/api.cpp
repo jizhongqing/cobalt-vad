@@ -64,7 +64,7 @@ ApiReturn Api_NewModel(CobaltString modelIdC, CobaltString modelPathC)
 {
         try
         {
-            CobaltApi::sCobaltApi.Api_NewModel(modelIdC, modelPathC);
+            DetectorApi::sDetectorApi.Api_NewModel(modelIdC, modelPathC);
             return successRet();
         }
         EXCEPTION_TO_API_RETURN
@@ -76,7 +76,7 @@ ApiReturn Api_DeleteModel(CobaltString modelIdC)
 {
     try
     {
-        CobaltApi::sCobaltApi.Api_DeleteModel(modelIdC);
+        DetectorApi::sDetectorApi.Api_DeleteModel(modelIdC);
         return successRet();
     }
     EXCEPTION_TO_API_RETURN
@@ -86,7 +86,7 @@ ApiReturn Api_NewDetector(CobaltString recognizerIdC, CobaltString modelIdC)
 {
     try
     {
-        CobaltApi::sCobaltApi.Api_NewDetector(recognizerIdC, modelIdC);
+        DetectorApi::sDetectorApi.Api_NewDetector(recognizerIdC, modelIdC);
         return successRet();
     }
     EXCEPTION_TO_API_RETURN
@@ -96,7 +96,7 @@ ApiReturn Api_DeleteDetector(CobaltString recognizerIdC)
 {
     try
     {
-        CobaltApi::sCobaltApi.Api_DeleteDetector(recognizerIdC);
+        DetectorApi::sDetectorApi.Api_DeleteDetector(recognizerIdC);
         return successRet();
     }
     EXCEPTION_TO_API_RETURN
@@ -107,7 +107,7 @@ DetectorReturn Detector_PushEvent(CobaltString recognizerIdC, AudioEvent* event)
     try
     {
         string serializedEvents;
-        CobaltApi::sCobaltApi.Detector_PushEvent(recognizerIdC, event, serializedEvents);
+        DetectorApi::sDetectorApi.Detector_PushEvent(recognizerIdC, event, serializedEvents);
         return successRet(serializedEvents);
     }
     EXCEPTION_TO_DETECTOR_RETURN
@@ -117,7 +117,7 @@ ApiReturn Api_RegisterLoggingCallback(Logging_Callback callback)
 {
     try
     {
-        CobaltApi::sCobaltApi.Api_RegisterLoggingCallback(callback);
+        DetectorApi::sDetectorApi.Api_RegisterLoggingCallback(callback);
         return successRet();
     }
     EXCEPTION_TO_API_RETURN

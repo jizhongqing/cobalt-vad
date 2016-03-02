@@ -44,7 +44,7 @@ extern "C"
     * the call returns. Pointers returned by the API will remain in scope until
     * the client calls the "clear" function. Best practice is to copy the
     * contents each pointer, and call clear() immediately, to avoid memory
-    * usage growth.
+    * usage growth. Notably, the PushAudio method requires freeing memory.
     *
     *
     * The API delivers results synchronously, as a return from the API call.
@@ -109,6 +109,9 @@ extern "C"
 
     /**
     * Entry point for pushing audio to a detector.
+    * You should clear the DetectorReturn object as soon as you're done with
+    * the results, to avoid memory bloat.
+    *
     * \param[in] detectorIdC
     *   The ID of the detector. The detector must alreadt exist, through the
     *   NewDetector call.

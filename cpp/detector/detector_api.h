@@ -18,33 +18,33 @@ using std::map;
 
 namespace cobalt
 {
-        class CobaltApi
-        {
-        public:
-            // the only instance of the cobalt api.
-            static CobaltApi sCobaltApi;
-        private:
-            // singleton
-            CobaltApi();
-            ~CobaltApi();
-        public:
-            // returns if successful, throws if not.
-            void Api_NewModel(CobaltString modelIdC, CobaltString modelPathC);
-    
-            void Api_DeleteModel(CobaltString modelIdC);
-    
-            void Api_NewDetector(CobaltString detectorIdC, CobaltString modelIdC);
-    
-            void Api_DeleteDetector(CobaltString detectorIdC);
-    
-            void Detector_PushEvent(CobaltString detectorIdC, AudioEvent* event, string& jsonResults);
-    
-            // callback function registration. These functions are not thread safe.
-            // Best practice is to register callbacks once, before other API calls, and leave them
-            // alone for the lifetime of the process.
-    
-            // Logging callback.
-            void Api_RegisterLoggingCallback(Logging_Callback callback);
+    class DetectorApi
+    {
+    public:
+        // the only instance of the cobalt api.
+        static DetectorApi sDetectorApi;
+    private:
+        // singleton
+        DetectorApi();
+        ~DetectorApi();
+    public:
+        // returns if successful, throws if not.
+        void Api_NewModel(CobaltString modelIdC, CobaltString modelPathC);
+
+        void Api_DeleteModel(CobaltString modelIdC);
+
+        void Api_NewDetector(CobaltString detectorIdC, CobaltString modelIdC);
+
+        void Api_DeleteDetector(CobaltString detectorIdC);
+
+        void Detector_PushEvent(CobaltString detectorIdC, AudioEvent* event, string& jsonResults);
+
+        // callback function registration. These functions are not thread safe.
+        // Best practice is to register callbacks once, before other API calls, and leave them
+        // alone for the lifetime of the process.
+
+        // Logging callback.
+        void Api_RegisterLoggingCallback(Logging_Callback callback);
 
     private:
         // members

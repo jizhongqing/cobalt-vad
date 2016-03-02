@@ -90,6 +90,13 @@ def get_dependencies_for_module(module):
         pass
     elif module == 'blas':
         pass
+    elif module == 'api':
+        module_depends.append('detector')
+        module_depends.append('boost')
+    elif module == 'detector':
+        module_depends.append('api')
+        module_depends.append('boost')
+        module_depends.append('util')
     else:
         raise Exception('unknown module (directory) name '+ module)
     return module_depends

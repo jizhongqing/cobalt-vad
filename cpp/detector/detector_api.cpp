@@ -1,10 +1,10 @@
-#include "detector/cobalt_api.cpp"
+#include "detector/detector_api.h"
 
 namespace cobalt
 {
-    CobaltApi CobaltApi::sCobaltApi;
+    DetectorApi DetectorApi::sDetectorApi;
 
-    void CobaltApi::Api_NewModel(CobaltString modelIdC, CobaltString pathC)
+    void DetectorApi::Api_NewModel(CobaltString modelIdC, CobaltString pathC)
     {
         const string modelId(modelIdC);
         const string modelPath(pathC);
@@ -36,7 +36,7 @@ namespace cobalt
         logMessage(LOGLEVEL_INFO, ss.str());
     }
 
-    void CobaltApi::Api_DeleteModel(CobaltString modelIdC)
+    void DetectorApi::Api_DeleteModel(CobaltString modelIdC)
     {
         const string modelId(modelIdC);
         std::stringstream ss;
@@ -57,12 +57,7 @@ namespace cobalt
     }
 
 
-    void CobaltApi::Api_NewDetector(CobaltString detectorIdC, CobaltString modelIdC)
-    {
-        newDetector(detectorIdC, modelIdC);
-    }
-
-   VadDetector::Ptr CobaltApi::newDetector(CobaltString detectorIdC, CobaltString modelIdC)
+    void DetectorApi::Api_NewDetector(CobaltString detectorIdC, CobaltString modelIdC)
     {
         const string detectorId(detectorIdC);
         const string modelId(modelIdC);
@@ -78,10 +73,9 @@ namespace cobalt
         ss.str(string());
         ss << "Api_NewDetector, successfully created detector " << detectorId;
         logMessage(LOGLEVEL_INFO, ss.str());
-        return detector;
     }
 
-    VadDetector::Ptr CobaltApi::createDetector(const string& detectorId, const string& modelId)
+    VadDetector::Ptr DetectorApi::createDetector(const string& detectorId, const string& modelId)
     {
         VadModel::Ptr model;
         {
@@ -103,7 +97,7 @@ namespace cobalt
         return detector;
     }
 
-    void CobaltApi::Api_DeleteDetector(CobaltString detectorIdC)
+    void DetectorApi::Api_DeleteDetector(CobaltString detectorIdC)
     {
         const string detectorId(detectorIdC);
         std::stringstream ss;
@@ -124,7 +118,7 @@ namespace cobalt
         logMessage(LOGLEVEL_INFO, ss.str());
     }
 
-    void CobaltApi::Detector_PushEvent(CobaltString detectorIdC, AudioEvent* event, string& jsonResults)
+    void DetectorApi::Detector_PushEvent(CobaltString detectorIdC, AudioEvent* event, string& jsonResults)
     {
         const string detectorId(detectorIdC);
         if (event == NULL)
@@ -152,20 +146,18 @@ namespace cobalt
 
     }
 
-    CobaltApi::CobaltApi()
+    DetectorApi::DetectorApi()
     {
         mLogger = boost::make_shared<ApiLogger>(&(mLoggingCallback));
-        // some kaldi functions kick off their own threads, the number of threads is
-        // based on this number.
 
     }
-    void CobaltApi::Api_RegisterLoggingCallback(Logging_Callback callback)
+    void DetectorApi::Api_RegisterLoggingCallback(Logging_Callback callback)
     {
         setLogger(mLogger);
         mLoggingCallback = callback;
     }
 
-    CobaltApi::~CobaltApi()
+    DetectorApi::~DetectorApi()
     {
         std::stringstream ss;
         // we are destruction, meaning the process is shutting down, log to stderr instead of logging handlers.

@@ -7,12 +7,7 @@ base_files = [
     'detector_api.cpp',
     ]
 
-cpp_flags = ['-Werror', '-Wall', '-Wno-sign-compare', '-Wno-unused-local-typedefs',]
-module_name = 'config'
+cpp_flags = ['-Werror', '-Wall']
+module_name = 'detector'
 include_dirs = ['..',]
 static_lib = env.CompileToLibraries(base_files, module_name, include_dirs, cpp_flags)
-
-'''
-test_exe = env.BuildExecutable('test_config', 'test_configset.cpp', include_dirs, module_name, cpp_flags)
-env.RunLogrefTest(test_exe, 'test_config')
-'''

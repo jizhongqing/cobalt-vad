@@ -103,6 +103,7 @@ namespace cobalt
         std::stringstream ss;
         ss << "Api_DeleteDetector, deleting detector with id " << detectorId;
         logMessage(LOGLEVEL_INFO, ss.str());
+        VadDetector::Ptr detector;
         {
             LockGuard lock(mMutex);
             map<string, VadDetector::Ptr>::iterator it = mDetectors.find(detectorId);
@@ -110,9 +111,10 @@ namespace cobalt
             {
                 throw std::runtime_error(string("Api_DeleteDetector: detector id ") + detectorId + " not found.");
             }
-            it->second->shutdownDetector();
+            detector = it->second;
             mDetectors.erase(it);
         }
+        detector->shutdownDetector();
         ss.str(string());
         ss << "Api_DeleteDetector, successfully deleted detector " << detectorId;
         logMessage(LOGLEVEL_INFO, ss.str());

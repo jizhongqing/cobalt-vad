@@ -4,9 +4,9 @@
 
 namespace vad_client
 {
-    MakeRecognizerName MakeRecognizerName::sMakeRecognizerName;
+    MakeDetectorName MakeDetectorName::sMakeDetectorName;
 
-    string MakeRecognizerName::makeRecognizerName(const string& id)
+    string MakeDetectorName::makeDetectorName(const string& id)
     {
         string idToInsert = id;
         const string wavEnd = ".wav";
@@ -23,7 +23,7 @@ namespace vad_client
         return idToInsert;
     }
 
-    void MakeRecognizerName::removeRecognizerName(const string& id)
+    void MakeDetectorName::removeDetectorName(const string& id)
     {
         LockGuard_t lock(mMutex);
         if (mRecognizerIds.find(id) == mRecognizerIds.end())
@@ -34,18 +34,18 @@ namespace vad_client
     }
 
 
-	void checkApiReturn(const ApiReturn& ret)
-	{
-		// 0 means success
-		if (ret.error == 0)
-		{
-			return;
-		}
-		// copy the string and use api call to release memory
-		const string error(ret.errorMessage);
-		Api_Clear(ret.errorMessage);
-		throw std::runtime_error(error);
-	}
+    void checkApiReturn(const ApiReturn& ret)
+    {
+        // 0 means success
+        if (ret.error == 0)
+        {
+            return;
+        }
+        // copy the string and use api call to release memory
+        const string error(ret.errorMessage);
+        Api_Clear(ret.errorMessage);
+        throw std::runtime_error(error);
+    }
 
     void checkDetectorReturn(const DetectorReturn& ret, string& jsonVadEvents)
     {

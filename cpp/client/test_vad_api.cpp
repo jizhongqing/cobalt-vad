@@ -21,40 +21,39 @@ void testLoggingCallback(int loglevel, CobaltString msg)
 }
 
 
-// Steady-state recognition. We've already setup callbacks and a model, we are ready
-// to recognize speech.
+// Steady-state detection. We've already setup callbacks and a model, we are ready
+// to detect speech events.
 //
 // This function
-// 1. Instantiate a recognizer.
-// 2. Pushes an audio event to the recognizer.
-// 3. Check result of audio event, and call GetResult() if there is no result.
-// 4. Deletes the recognizer.
+// 1. Instantiate a detector.
+// 2. Pushes an audio event to the detector, and get events, if any.
+// 3. Deletes the detector.
 string workflowExample(AudioEvent* event, const string &modelId)
 {
-    const string recognizerIdBase = "example_recognizer";
+    const string detectorIdBase = "example_detector";
 
-    // make sure the recognizer ID is unique.
-    const string recognizerId = MakeRecognizerName::sMakeRecognizerName.makeRecognizerName(recognizerIdBase);
+    // make sure the detector ID is unique.
+    const string detectorId = MakeDetectorName::sMakeDetectorName.makeDetectorName(detectorIdBase);
 
-    // instatiate a recognizer, using the model we've previously loaded
+    // instatiate a detector, using the model we've previously loaded
     //
     // we expect this to be a lightweight call, because all the heavy duty IO work has
     // been done in setting up the model.
-    checkApiReturn(Api_NewDetector(recognizerId.c_str(), modelId.c_str()));
+    checkApiReturn(Api_NewDetector(detectorId.c_str(), modelId.c_str()));
 
     string jsonVadEvents;
-    // Push the audio event to the recognizer
+    // Push the audio event to the detector
     //
     // We recommend that the client push audio events as soon as they are available.
     // Buffering and pushing large chunks of audio all at once will lead to increased latency.
 
-    checkDetectorReturn(Detector_PushEvent(recognizerId.c_str(), event), jsonVadEvents);
+    checkDetectorReturn(Detector_PushEvent(detectorId.c_str(), event), jsonVadEvents);
 
-    // Delete the recognizer. We need to clean up memory associated with the recognizer.
-    checkApiReturn(Api_DeleteDetector(recognizerId.c_str()));
+    // Delete the detector. We need to clean up memory associated with the detector.
+    checkApiReturn(Api_DeleteDetector(detectorId.c_str()));
 
-    // we do not need this ID anymore, delete the recognizer ID from the client side records.
-    MakeRecognizerName::sMakeRecognizerName.removeRecognizerName(recognizerId);
+    // we do not need this ID anymore, delete the detector ID from the client side records.
+    MakeDetectorName::sMakeDetectorName.removeDetectorName(detectorId);
     return jsonVadEvents;
 }
 

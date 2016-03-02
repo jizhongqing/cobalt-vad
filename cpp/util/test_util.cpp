@@ -82,7 +82,8 @@ void test_vad_events()
     VadEvents emptyEvents;
     string serializedEmptyEvents = makeAndPrintJson(emptyEvents);
     cout << endl << "de-serialized empty vad events:" << endl;
-    VadEvents deserializedEmptyEvents;deserizalizeAndPrint(serializedEmptyEvents);
+    VadEvents deserializedEmptyEvents;
+    deserizalizeAndPrint(serializedEmptyEvents);
 
     if(!compareEvents(emptyEvents, deserializedEmptyEvents))
     {

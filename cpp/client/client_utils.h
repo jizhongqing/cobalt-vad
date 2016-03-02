@@ -23,28 +23,28 @@ namespace vad_client
 	void checkDetectorReturn(const DetectorReturn& ret, string& jsonVadEvents);
 
     /**
-     * class that helps make a recognizer name, with the condition that no two recognizers share the same name.
+     * class that helps make a detector name, with the condition that no two detectors share the same name.
      */
-    class MakeRecognizerName
+    class MakeDetectorName
     {
     public:
-        // the only instance of MakeRecognizerName .
-        static MakeRecognizerName sMakeRecognizerName;
+        // the only instance of MakeDetectorName .
+        static MakeDetectorName sMakeDetectorName;
 
-        /** Create a recognizer name,
+        /** Create a detector name,
          * if there is a naming collision, meaning id is active,
          * we will append to the id.
          */
-        string makeRecognizerName(const string& id);
+        string makeDetectorName(const string& id);
 
         /**
-         * Remove a recognizer name, call this with the ids created by makeRecognizerName(),
-         * once you are done with the recognizer name.
+         * Remove a detector name, call this with the ids created by makeDetectorName(),
+         * once you are done with the detector name.
          */
-        void removeRecognizerName(const string& id);
+        void removeDetectorName(const string& id);
 
     private:
-        MakeRecognizerName(){}
+        MakeDetectorName(){}
 
         std::set<string> mRecognizerIds;
         typedef boost::lock_guard<boost::mutex> LockGuard_t;

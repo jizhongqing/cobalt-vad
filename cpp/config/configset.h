@@ -16,7 +16,7 @@ namespace cobalt
     public:
         typedef boost::shared_ptr<ConfigSet> Ptr;
 
-        ConfigSet(const std::string& configfile, const std::vector<ParamOverride>& overrides);
+        ConfigSet(const std::string& configfile);
 
         const ParametersMap& getParams() const;
 

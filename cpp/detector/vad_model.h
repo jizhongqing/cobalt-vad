@@ -9,7 +9,7 @@ namespace cobalt
     {
     public:
         typedef boost::shared_ptr<VadModel> Ptr;
-        VadModel(const std::string& modelpath);
+        VadModel(const std::string& modelpath){};
 
         //TODO: Fill out getters, like getFrontend.
     };

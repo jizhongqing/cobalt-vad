@@ -1,0 +1,31 @@
+TestLogger: level 2 message Api_NewModel, creating model with id realModel, path data/models/dummy.config
+TestLogger: level 2 message Api_NewModel, successfully created model realModel
+TestLogger: level 2 message Api_NewDetector, creating  detector with id example_recognizer using model id realModel
+TestLogger: level 2 message Api_NewDetector, successfully created detector example_recognizer
+vadResults
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+TestLogger: level 2 message Api_DeleteDetector, deleting detector with id example_recognizer
+TestLogger: level 2 message Api_DeleteDetector, successfully deleted detector example_recognizer
+Vad events in JSON{"cobalt_object":"vad_events","events":[{"event_occurence_msec":0,"event_type":"start_of_speech"},{"event_occurence_msec":560,"event_type":"end_of_speech"},{"event_occurence_msec":570,"event_type":"start_of_speech"},{"event_occurence_msec":1380,"event_type":"end_of_speech"},{"event_occurence_msec":1390,"event_type":"start_of_speech"},{"event_occurence_msec":2500,"event_type":"end_of_speech"},{"event_occurence_msec":2510,"event_type":"start_of_speech"},{"event_occurence_msec":2970,"event_type":"end_of_speech"},{"event_occurence_msec":3000,"event_type":"start_of_speech"},{"event_occurence_msec":3190,"event_type":"end_of_speech"},{"event_occurence_msec":3210,"event_type":"start_of_speech"},{"event_occurence_msec":3360,"event_type":"end_of_speech"},{"event_occurence_msec":3380,"event_type":"start_of_speech"},{"event_occurence_msec":3890,"event_type":"end_of_speech"},{"event_occurence_msec":4170,"event_type":"start_of_speech"},{"event_occurence_msec":4460,"event_type":"end_of_speech"},{"event_occurence_msec":4510,"event_type":"start_of_speech"},{"event_occurence_msec":6390,"event_type":"end_of_speech"},{"event_occurence_msec":6400,"event_type":"start_of_speech"},{"event_occurence_msec":6420,"event_type":"end_of_speech"}],"version":"1"}
+Printing 20 VAD events.
+event 0 type: start of speech event occurence msec: 0
+event 1 type: end of speech event occurence msec: 560
+event 2 type: start of speech event occurence msec: 570
+event 3 type: end of speech event occurence msec: 1380
+event 4 type: start of speech event occurence msec: 1390
+event 5 type: end of speech event occurence msec: 2500
+event 6 type: start of speech event occurence msec: 2510
+event 7 type: end of speech event occurence msec: 2970
+event 8 type: start of speech event occurence msec: 3000
+event 9 type: end of speech event occurence msec: 3190
+event 10 type: start of speech event occurence msec: 3210
+event 11 type: end of speech event occurence msec: 3360
+event 12 type: start of speech event occurence msec: 3380
+event 13 type: end of speech event occurence msec: 3890
+event 14 type: start of speech event occurence msec: 4170
+event 15 type: end of speech event occurence msec: 4460
+event 16 type: start of speech event occurence msec: 4510
+event 17 type: end of speech event occurence msec: 6390
+event 18 type: start of speech event occurence msec: 6400
+event 19 type: end of speech event occurence msec: 6420
+Active models remain upon API destruction.

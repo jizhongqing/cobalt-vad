@@ -5,6 +5,8 @@ Import('env')
 
 base_files = [
     'detector_api.cpp',
+    'detector.cpp',
+    'audio_io.cpp',
     ]
 
 cpp_flags = ['-Werror', '-Wall']

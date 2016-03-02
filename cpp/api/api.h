@@ -11,20 +11,20 @@ extern "C"
     * this api is to convert audio to "speech_start" and "speech_end" timestamps.
     *
     * There are two main types of 'objects' in this API: Models and Detectors
-    * 
-    * A Model is an encapsulation for machine-learned artifacts that were 
+    *
+    * A Model is an encapsulation for machine-learned artifacts that were
     * trained offline. Models are the 'brain' of our system. Models own the
-    * accuracy of detection. 
+    * accuracy of detection.
     *
     * A Detector is created from a model and contains the logic for performing
-    * voice activity detection. Detectors own the latency and stability of 
+    * voice activity detection. Detectors own the latency and stability of
     * detection.
     *
     * Models are typically heavy weight objects that should be created once and
     * used often. Detectors are light weight objects should be created per audio
     * stream (unless otherwise advised).
     *
-    * This API provides two main classes of functions: API level functions, 
+    * This API provides two main classes of functions: API level functions,
     * prefixed by API_, are responsible for creating and deleting objects, such
     * as models and detectors. Object specific functions, prefixed by object
     * names such as Detector_, are responsible for controlling specific
@@ -61,7 +61,7 @@ extern "C"
     #include "api_types.h"
     /**
     * Entry point for creating a new model
-    * \param[in] modelIdC 
+    * \param[in] modelIdC
     *
     *   The ID of the successfully created model,
     *   if call is successful, clients may use the model by sending the ID
@@ -95,7 +95,7 @@ extern "C"
     *
     * \param[in] modelIdC
     *   The ID of the model to be used by the detector.
-    * 
+    *
     */
     ApiReturn Api_NewDetector(CobaltString detectorIdC, CobaltString modelIdC);
 
@@ -120,7 +120,7 @@ extern "C"
     *   The detection event. Examples of event types are audio events and
     *   end-of-session events.
     */
-    DetectorReturn Api_PushEvent(CobaltString detectorIdC, DetectionEvent* event);
+    DetectorReturn Detector_PushEvent(CobaltString detectorIdC, AudioEvent* event);
 
     /**
     * Entry point for registering a logging callback

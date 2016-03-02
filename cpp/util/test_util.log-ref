@@ -20,3 +20,28 @@ Printing 0 VAD events.
 
 
 End test_vad_events()
+
+
+Begin testVadEventsFromFrames()
+
+events with previousEndFrame 0 previousState 0
+Printing 3 VAD events.
+event 0 type: start of speech event occurence msec: 0
+event 1 type: end of speech event occurence msec: 100
+event 2 type: start of speech event occurence msec: 200
+events with previousEndFrame 0 previousState 1
+Printing 2 VAD events.
+event 0 type: end of speech event occurence msec: 100
+event 1 type: start of speech event occurence msec: 200
+
+events with previousEndFrame 10 previousState 0
+Printing 3 VAD events.
+event 0 type: start of speech event occurence msec: 100
+event 1 type: end of speech event occurence msec: 200
+event 2 type: start of speech event occurence msec: 300
+
+Try converting to events with 0 frames
+Printing 0 VAD events.
+
+
+End testVadEventsFromFrames()

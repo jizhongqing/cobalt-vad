@@ -12,7 +12,8 @@ dirs = (
     './cpp/util',
     './cpp/config',
     './cpp/api',
-    './cpp/detector'
+    './cpp/detector',
+    './cpp/client',
     )
 
 # We want these top-level files to appear in the build directory:

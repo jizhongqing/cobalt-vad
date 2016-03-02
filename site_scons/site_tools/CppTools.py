@@ -6,18 +6,12 @@ util_libs = ['libutil.a',]
 config_libs = ['libconfig.a',]
 detector_libs = ['libdetector.a']
 api_libs = ['libapi.a']
-'''
-model_libs = ['libmodel.a',]
-result_libs = ['libresult.a',]
-recognizer_libs = ['librecognizer.a',]
-cobalt_api_libs = ['libcobalt_api.a',]
-cobalt_client_libs = ['libcobalt_client.a',]
-decoder_libs = ['libdecoder.a'],
-'''
+client_libs = ['libclient.a']
 
 json_cpp_libs = ['libjson_cpp.a',]
 
-kaldi_libs = ['kaldi-feat.a',
+kaldi_libs = ['kaldi-ivector.a',
+              'kaldi-feat.a',
               'kaldi-transform.a',
               'kaldi-thread.a',
               'kaldi-hmm.a',
@@ -77,17 +71,18 @@ def add_external_libs(env):
 
 def get_dependencies_for_module(module):
     module_depends = list()
-    if module == 'config':
+    if module == 'client':
+        module_depends.append('api')
+    elif module == 'api':
+        module_depends.append('detector')
+    elif module == 'detector':
+        module_depends.append('config')
+    elif module == 'config':
         module_depends.append('util')
     elif module == 'util':
          module_depends.append('boost')
          module_depends.append('jsoncpp')
          module_depends.append('kaldi')
-    elif module == 'api':
-        module_depends.append('api')
-    elif module == 'detector':
-        module_depends.append('config')
-
     elif module == 'kaldi':
         if 'linux' in str(sys.platform):
             module_depends.append('blas')

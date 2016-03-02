@@ -28,7 +28,7 @@ typedef struct ApiReturn
 {
     // 0 means success, non-0 means failures
     int error;
-    
+
     // if error is non-0, errorMessage will hold the string error message.
     // if error is 0, do not access errorMessage.
     char* errorMessage;
@@ -56,6 +56,6 @@ typedef struct DetectorReturn
 typedef struct AudioEvent {
         short* audio;
         int size;
-} DetectionEvent;
+} AudioEvent;
 
 #endif

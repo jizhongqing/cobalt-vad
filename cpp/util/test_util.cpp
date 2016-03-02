@@ -91,11 +91,56 @@ void test_vad_events()
     cout << endl << endl << "End test_vad_events()" << endl;
 }
 
+void testVadEventsFromFrames()
+{
+    cout << endl << endl << "Begin testVadEventsFromFrames()" << endl;
+    // first make some events.
+    kaldi::Vector<float> frameVadInfo;
+    frameVadInfo.Resize(30);
+    for (int i = 0 ; i < 10; ++i)
+    {
+        frameVadInfo(i) = 1;
+    }
+    for (int i = 10 ; i < 20; ++i)
+    {
+        frameVadInfo(i) = 0;
+    }
+    for (int i = 20 ; i < 30; ++i)
+    {
+        frameVadInfo(i) = 1;
+    }
+    VadEvents events;
+    int previousEndFrame = 0;
+    bool previousState = false;
+    frameVadResultsToEvents(frameVadInfo, events, previousEndFrame, previousState);
+    cout << endl << "events with previousEndFrame " << previousEndFrame << " previousState " << previousState << endl;
+    printVadEvents(events);
+
+    previousState = true;
+    frameVadResultsToEvents(frameVadInfo, events, previousEndFrame, previousState);
+    cout << "events with previousEndFrame " << previousEndFrame << " previousState " << previousState << endl;
+    printVadEvents(events);
+
+    previousEndFrame = 10;
+    previousState = false;
+    frameVadResultsToEvents(frameVadInfo, events, previousEndFrame, previousState);
+    cout << endl << "events with previousEndFrame " << previousEndFrame << " previousState " << previousState << endl;
+    printVadEvents(events);
+
+    frameVadInfo.Resize(0);
+    cout << endl << "Try converting to events with 0 frames" << endl;
+    frameVadResultsToEvents(frameVadInfo, events, previousEndFrame, previousState);
+    printVadEvents(events);
+
+    cout << endl << endl << "End testVadEventsFromFrames()" << endl;
+}
+
 int main()
 {
     try
     {
         test_vad_events();
+        testVadEventsFromFrames();
     }
     catch (std::runtime_error &e)
     {

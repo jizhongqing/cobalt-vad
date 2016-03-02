@@ -30,6 +30,56 @@ namespace cobalt
         return root;
     }
 
+    // true is in-speech, false is silence
+    bool kaldiVadToBool(float kaldiVad)
+    {
+        if (kaldiVad == 1.0)
+        {
+            return true;
+        }
+        else if (kaldiVad == 0.0)
+        {
+            return false;
+        }
+        throw std::runtime_error("kaldi vad was neither 0 or 1.");
+    }
+
+    void frameVadResultsToEvents(const kaldi::Vector<kaldi::BaseFloat> &vadResult, VadEvents& events, int previousEndFrame, bool previousState)
+    {
+        events.clear();
+        // this value is constant for all kaldi frames.
+        const int millisecondsPerFrame = 10;
+        // no events return.
+        if (vadResult.Dim() == 0)
+        {
+            return;
+        }
+        for (int i = 0; i < vadResult.Dim(); ++i)
+        {
+            const bool currentState = kaldiVadToBool(vadResult(i));
+            // current state != previous state, an event occurred.
+            if (currentState != previousState)
+            {
+                VadEvent event;
+                const int currentFrame = previousEndFrame + i;
+                event.eventOccurenceMsec = currentFrame * millisecondsPerFrame;
+                // we went from silence to speech, this is a start-of-speech event.
+                if (currentState)
+                {
+                    event.vadEventType = SOS;
+                }
+                // we went from speech to silence, this is a end-of-speech event
+                else
+                {
+                    event.vadEventType = EOS;
+                }
+                events.push_back(event);
+                previousState = currentState;
+            }
+        }
+
+    }
+
     void deserializeVadEvents(const string& jsonEvents, VadEvents& deserializedEvents)
     {
         using namespace vad_events_json;

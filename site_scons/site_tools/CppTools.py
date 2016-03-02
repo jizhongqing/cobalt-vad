@@ -4,6 +4,8 @@ import os, sys
 
 util_libs = ['libutil.a',]
 config_libs = ['libconfig.a',]
+detector_libs = ['libdetector.a']
+api_libs = ['libapi.a']
 '''
 model_libs = ['libmodel.a',]
 result_libs = ['libresult.a',]
@@ -81,6 +83,11 @@ def get_dependencies_for_module(module):
          module_depends.append('boost')
          module_depends.append('jsoncpp')
          module_depends.append('kaldi')
+    elif module == 'api':
+        module_depends.append('api')
+    elif module == 'detector':
+        module_depends.append('config')
+
     elif module == 'kaldi':
         if 'linux' in str(sys.platform):
             module_depends.append('blas')

@@ -1,0 +1,13 @@
+# Copyright 2015 Cobalt Speech Inc.
+import os
+
+Import('env')
+
+base_files = [
+    'api.cpp'
+    ]
+
+cpp_flags = ['-Werror', '-Wall']
+module_name = 'api'
+include_dirs = ['..',]
+static_lib = env.CompileToLibraries(base_files, module_name, include_dirs, cpp_flags)

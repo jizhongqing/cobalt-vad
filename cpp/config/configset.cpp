@@ -9,7 +9,7 @@
 
 namespace cobalt
 {
-    ConfigSet::ConfigSet(const string& configfile, const std::vector<ParamOverride>& overrides)
+    ConfigSet::ConfigSet(const string& configfile)
     : mParentPath(splitFilename(configfile).first)
     {}
 

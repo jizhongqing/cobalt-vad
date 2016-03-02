@@ -11,6 +11,8 @@ dirs = (
     # We should use the global function in CppTools to re-order and make things automatic.
     './cpp/util',
     './cpp/config',
+    './cpp/api',
+    './cpp/detector'
     )
 
 # We want these top-level files to appear in the build directory:

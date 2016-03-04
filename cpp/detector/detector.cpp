@@ -1,11 +1,14 @@
 #include "detector/detector.h"
 #include "feat/feature-mfcc.h"
 #include <iostream>
+#include <vector>
+#include "matrix/kaldi-matrix.h"
 using namespace std;
 namespace cobalt
 {
+
     VadDetector::VadDetector(VadModel::Ptr model):
-    mNumFramesDecoded(0), mPreviousEndState(false)
+    mNumFramesDecoded(0), mPreviousEndState(false), mKaldiVadDetector(kaldi::VadEnergyOptions())
     {
         // TODO: fill out options from the model
         kaldi::MfccOptions mfcc_opts;
@@ -15,38 +18,29 @@ namespace cobalt
     {
         // this turns off vtln
         kaldi::BaseFloat vtlnWarp = 1.0;
-        // TODO, use real event.
         kaldi::Vector<float> data;
-        data.Resize(event->size);
+        data.Resize(mAudioRemainder.Dim() + event->size);
+        // probably a smarter way to do this.
+        for (int i = 0; i < mAudioRemainder.Dim(); ++i)
+        {
+            data.Data()[i] = mAudioRemainder.Data()[i];
+        }
         for (int i = 0; i < event->size; ++i)
         {
-            data.Data()[i] = event->audio[i];
+            data.Data()[i + mAudioRemainder.Dim()] = event->audio[i];
         }
+        mAudioRemainder.Resize(0);
         kaldi::Matrix<kaldi::BaseFloat> features;
-        mMfcc->Compute(data, vtlnWarp, &features, NULL);
+        mMfcc->Compute(data, vtlnWarp, &features, &mAudioRemainder);
 
-        kaldi::Vector<kaldi::BaseFloat> vadResult(features.NumRows());
-        //TODO: get this from the model.
-        kaldi::VadEnergyOptions opts;
-        kaldi::ComputeVadEnergy(opts, features, &vadResult);
-        const int mNumPrevFramesDecoded = mNumFramesDecoded;
-        mNumFramesDecoded += vadResult.Dim();
-
-        if (vadResult.Dim() > 0)
+        std::vector<bool> vadResults;
+        mKaldiVadDetector.computeVadEnergy(features, &vadResults);
+        const int numPrevFramesDecoded = mNumFramesDecoded;
+        mNumFramesDecoded += vadResults.size();
+        frameVadResultsToEvents(vadResults, events, numPrevFramesDecoded, mPreviousEndState);
+        if (vadResults.size() > 0)
         {
-            mPreviousEndState = kaldiVadToBool(vadResult(vadResult.Dim()-1));
+            mPreviousEndState = vadResults.back();
         }
-        frameVadResultsToEvents(vadResult, events, mNumPrevFramesDecoded, mPreviousEndState);
-
-        /*
-        cout << "vadResults" << endl;
-        for (int i = 0; i < vadResult.Dim(); ++i)
-        {
-            cout << vadResult(i) << " ";
-        }
-
-        cout << endl;
-        */
-
     }
 }

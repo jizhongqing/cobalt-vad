@@ -17,6 +17,15 @@ namespace vad_client
 
 		const kaldi::WaveData& getWavData();
 
+		const std::vector<short>& getSamples() const
+		{
+		    return mSamples;
+		}
+
+		const float getSampFreq() const
+		{
+		    return mWavData.SampFreq();
+		}
 	private:
 		std::vector<short> mSamples;
 		size_t mCurrentSampleIndex;

@@ -6,7 +6,7 @@
 #include "util/vad_events.h"
 #include "api/api_types.h"
 #include "feat/feature-mfcc.h"
-#include "ivector/voice-activity-detection.h"
+#include "detector/kaldi_vad_detector.h"
 
 namespace cobalt
 {
@@ -22,14 +22,18 @@ namespace cobalt
         //
         // Note that the number of events returned is 0-N.
         void pushEvents(AudioEvent *event, VadEvents& events);
-        void shutdownDetector(){};
+        void shutdownDetector()
+        {};
 
     private:
         boost::shared_ptr<kaldi::Mfcc> mMfcc;
         int mNumFramesDecoded;
-
         // false means in silence, true means in speech.
         bool mPreviousEndState;
+
+        KaldiVadDetector mKaldiVadDetector;
+
+        kaldi::Vector<kaldi::BaseFloat> mAudioRemainder;
     };
 }
 

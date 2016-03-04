@@ -24,8 +24,8 @@ void test_wave_writer()
     const kaldi::WaveData& waveData = getter.getWavData();
 
     const string outfile = "out_woman1_wb.wav";
-    WaveWriter writer("out_woman1_wb.wav");
-    writer.writeWav(samples, waveData.SampFreq(), 1);
+    WaveWriter writer(outfile);
+    writer.writeWav(samples, waveData.SampFreq());
 
     AudioChunkGetter getter2(outfile);
     std::vector<short> samples2;
@@ -40,6 +40,24 @@ void test_wave_writer()
     // remove the temp file if the test succeeds.
     boost::filesystem::remove(outfile);
 
+    cout << "Test writing chunks of file" <<endl;
+    const size_t beginSample = 10;
+    const size_t endSample = 500;
+    writer.writeWav(samples, beginSample, endSample, waveData.SampFreq());
+
+    AudioChunkGetter getter3(outfile);
+    std::vector<short> samples3;
+    // get the next chunk of audio, at most of size mChunkSizeSamples
+    getter3.getNextChunk(samples3, chunkSizeMsec);
+
+    for (size_t i = beginSample; i < endSample; ++i)
+    {
+        if (samples[i] != samples3[i-beginSample])
+        {
+            throw std::runtime_error("Samples not equal");
+        }
+    }
+    cout << endl << "bytes read first and then re-written are equal, with offset and endsample." << endl;
     cout << endl << endl << "Begin test_wave_writer()" << endl;
 }
 int main()

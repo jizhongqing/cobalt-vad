@@ -5,6 +5,7 @@ base_files = [
     'client_utils.cpp',
     'audio_chunk_getter.cpp',
     'wave_writer.cpp',
+    'audio_sender_and_splitter.cpp',
     ]
 
 cpp_flags = ['-Werror', '-Wall',]
@@ -18,3 +19,12 @@ env.RunLogrefTest(test_vad_api, 'test_vad_api')
 test_client = env.BuildExecutable('test_client', 'test_client.cpp', include_dirs, module_name, cpp_flags)
 env.RunLogrefTest(test_client, 'test_client')
 
+vad_tool = env.BuildExecutable('vad_tool', 'vad_tool.cpp', include_dirs, module_name, cpp_flags)
+
+
+vad_tool_args = ['data/models/dummy.config',
+                 'data/audio/woman1_wb.wav',
+                 '.',
+                ]
+
+env.RunLogrefTest(vad_tool, 'vad_tool_test', vad_tool_args)

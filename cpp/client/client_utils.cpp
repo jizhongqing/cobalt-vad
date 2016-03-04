@@ -62,6 +62,16 @@ namespace vad_client
         Api_Clear(ret.errorMessage);
         throw std::runtime_error(error);
     }
+
+    void printVadEvents(const cobalt::VadEvents& events)
+    {
+        cout << "Printing " << events.size() << " VAD events." << endl;
+        for (size_t i = 0; i < events.size(); ++i)
+        {
+            const string eventType = (events[i].vadEventType == cobalt::SOS) ? "start of speech" : "end of speech";
+            cout << "event " << i << " type: " << eventType << " event occurence msec: " << events[i].eventOccurenceMsec << endl;
+        }
+    }
 }
 
 

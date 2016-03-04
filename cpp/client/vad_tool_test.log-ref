@@ -1,0 +1,31 @@
+Log Level: Info, LOG: Api_NewModel, creating model with id data/models/dummy.config, path data/models/dummy.config
+Log Level: Info, LOG: Api_NewModel, successfully created model data/models/dummy.config
+Log Level: Info, LOG: Api_NewDetector, creating  detector with id data/audio/woman1_wb using model id data/models/dummy.config
+Log Level: Info, LOG: Api_NewDetector, successfully created detector data/audio/woman1_wb
+Log Level: Info, LOG: Api_DeleteDetector, deleting detector with id data/audio/woman1_wb
+Log Level: Info, LOG: Api_DeleteDetector, successfully deleted detector data/audio/woman1_wb
+Printing 22 VAD events.
+event 0 type: start of speech event occurence msec: 0
+event 1 type: end of speech event occurence msec: 560
+event 2 type: start of speech event occurence msec: 580
+event 3 type: end of speech event occurence msec: 1370
+event 4 type: start of speech event occurence msec: 1390
+event 5 type: end of speech event occurence msec: 2340
+event 6 type: start of speech event occurence msec: 2350
+event 7 type: end of speech event occurence msec: 2480
+event 8 type: start of speech event occurence msec: 2510
+event 9 type: end of speech event occurence msec: 2950
+event 10 type: start of speech event occurence msec: 3000
+event 11 type: end of speech event occurence msec: 3190
+event 12 type: start of speech event occurence msec: 3210
+event 13 type: end of speech event occurence msec: 3350
+event 14 type: start of speech event occurence msec: 3380
+event 15 type: end of speech event occurence msec: 3890
+event 16 type: start of speech event occurence msec: 4170
+event 17 type: end of speech event occurence msec: 4450
+event 18 type: start of speech event occurence msec: 4510
+event 19 type: end of speech event occurence msec: 6390
+event 20 type: start of speech event occurence msec: 6400
+event 21 type: end of speech event occurence msec: 6420
+Log Level: Info, LOG: Api_DeleteModel, deleting model with id data/models/dummy.config
+Log Level: Info, LOG: Api_DeleteModel, successfully deleted model data/models/dummy.config

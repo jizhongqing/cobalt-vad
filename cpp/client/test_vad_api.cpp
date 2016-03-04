@@ -66,16 +66,6 @@ void getAudioEvent(AudioEvent &event)
     wavToAudioEvent(wavData, event);
 }
 
-void printVadEvents(const VadEvents& events)
-{
-    cout << "Printing " << events.size() << " VAD events." << endl;
-    for (size_t i = 0; i < events.size(); ++i)
-    {
-        const string eventType = (events[i].vadEventType == SOS) ? "start of speech" : "end of speech";
-        cout << "event " << i << " type: " << eventType << " event occurence msec: " << events[i].eventOccurenceMsec << endl;
-    }
-}
-
 void test_api_working()
 {
     const string realModel = "data/models/dummy.config";

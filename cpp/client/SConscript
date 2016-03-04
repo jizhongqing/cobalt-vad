@@ -3,6 +3,8 @@ import os
 
 base_files = [
     'client_utils.cpp',
+    'audio_chunk_getter.cpp',
+    'wave_writer.cpp',
     ]
 
 cpp_flags = ['-Werror', '-Wall',]
@@ -12,3 +14,7 @@ env.CompileToLibraries(base_files, module_name, include_dirs)
 
 test_vad_api = env.BuildExecutable('test_vad_api', 'test_vad_api.cpp', include_dirs, module_name, cpp_flags)
 env.RunLogrefTest(test_vad_api, 'test_vad_api')
+
+test_client = env.BuildExecutable('test_client', 'test_client.cpp', include_dirs, module_name, cpp_flags)
+env.RunLogrefTest(test_client, 'test_client')
+

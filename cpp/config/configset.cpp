@@ -11,7 +11,30 @@ namespace cobalt
 {
     ConfigSet::ConfigSet(const string& configfile)
     : mParentPath(splitFilename(configfile).first)
-    {}
+    {
+        addDefaultConfigs();
+        parseConfigFile(configfile);
+    }
+
+    void ConfigSet::addDefaultConfigs()
+    {
+        addDefaultParam("fe.vad_type", "kaldi-vad", \
+                        "String for the type of VAD", STRING_TYPE);
+        addDefaultParam("fe.vad_energy_threshold", "5.0", \
+                        "Constant term in energy threshold for MFCC0 for VAD "
+                        "(also see fe.vad_energy_mean_scale)", FLOAT_TYPE);
+        addDefaultParam("fe.vad_energy_mean_scale", "0.5", \
+                        "If this is set to s, to get the actual threshold "
+                        "we let m be the mean log-energy of the file, and "
+                        "use s*m + vad-energy-threshold", FLOAT_TYPE);
+        addDefaultParam("fe.vad_frame_context", "5", \
+                        "Number of frames of context on each side of central frame, "
+                        "in window for which energy is monitored", INT_TYPE);
+        addDefaultParam("fe.vad_proportion_threshold", "0.6", \
+                        "Parameter controlling the proportion of frames within "
+                        "the window that need to have more energy than the "
+                        "threshold", FLOAT_TYPE);
+    }
 
     const ParametersMap& ConfigSet::getParams() const
     {

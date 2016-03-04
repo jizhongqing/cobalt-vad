@@ -1,0 +1,32 @@
+
+
+Begin test_default_config()
+Log Level: Info, LOG: Reading configuration file data/models/dummy_config/empty.config
+key: fe.vad_energy_mean_scale, value: 0.5, description: If this is set to s, to get the actual threshold we let m be the mean log-energy of the file, and use s*m + vad-energy-threshold, type: float
+key: fe.vad_energy_threshold, value: 5.0, description: Constant term in energy threshold for MFCC0 for VAD (also see fe.vad_energy_mean_scale), type: float
+key: fe.vad_frame_context, value: 5, description: Number of frames of context on each side of central frame, in window for which energy is monitored, type: int
+key: fe.vad_proportion_threshold, value: 0.6, description: Parameter controlling the proportion of frames within the window that need to have more energy than the threshold, type: float
+key: fe.vad_type, value: kaldi-vad, description: String for the type of VAD, type: string
+
+
+Finish test_default_config()
+
+
+Begin test_user_config()
+Log Level: Info, LOG: Reading configuration file data/models/dummy_config/example.config
+key: fe.vad_energy_mean_scale, value: 0.51, description: If this is set to s, to get the actual threshold we let m be the mean log-energy of the file, and use s*m + vad-energy-threshold, type: float
+key: fe.vad_energy_threshold, value: 5.01, description: Constant term in energy threshold for MFCC0 for VAD (also see fe.vad_energy_mean_scale), type: float
+key: fe.vad_frame_context, value: 6, description: Number of frames of context on each side of central frame, in window for which energy is monitored, type: int
+key: fe.vad_proportion_threshold, value: 0.61, description: Parameter controlling the proportion of frames within the window that need to have more energy than the threshold, type: float
+key: fe.vad_type, value: kaldi-vad, description: String for the type of VAD, type: string
+
+
+Finish test_user_config()
+
+
+Begin test_parent_path()
+Log Level: Info, LOG: Reading configuration file data/models/dummy_config/empty.config
+Parent path of data/models/dummy_config/empty.config is data/models/dummy_config
+
+
+Finish test_parent_path()

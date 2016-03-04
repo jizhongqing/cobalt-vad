@@ -1,18 +1,15 @@
-# Copyright 2015 Cobalt Speech Inc.
-import os
-
 Import('env')
+import os
 
 base_files = [
     'configset.cpp',
+    'model_config.cpp',
     ]
 
-cpp_flags = ['-Werror', '-Wall', '-Wno-sign-compare', '-Wno-unused-local-typedefs',]
-module_name = 'config'
+cpp_flags = ['-Werror', '-Wall',]
 include_dirs = ['..',]
-static_lib = env.CompileToLibraries(base_files, module_name, include_dirs, cpp_flags)
+module_name = 'config'
+env.CompileToLibraries(base_files, module_name, include_dirs)
 
-'''
-test_exe = env.BuildExecutable('test_config', 'test_configset.cpp', include_dirs, module_name, cpp_flags)
-env.RunLogrefTest(test_exe, 'test_config')
-'''
+test_config = env.BuildExecutable('test_config', 'test_config.cpp', include_dirs, module_name, cpp_flags)
+env.RunLogrefTest(test_config, 'test_config')

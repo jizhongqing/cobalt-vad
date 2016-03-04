@@ -1,15 +1,17 @@
 #include "detector/detector.h"
 #include "feat/feature-mfcc.h"
+#include "detector/vad_model.h"
 #include <iostream>
+
 using namespace std;
 namespace cobalt
 {
     VadDetector::VadDetector(VadModel::Ptr model):
     mNumFramesDecoded(0), mPreviousEndState(false)
     {
-        // TODO: fill out options from the model
         kaldi::MfccOptions mfcc_opts;
         mMfcc = boost::make_shared<kaldi::Mfcc>(mfcc_opts);
+        mVadModel = model;
     }
     void VadDetector::pushEvents(AudioEvent *event, VadEvents& events)
     {
@@ -26,8 +28,11 @@ namespace cobalt
         mMfcc->Compute(data, vtlnWarp, &features, NULL);
 
         kaldi::Vector<kaldi::BaseFloat> vadResult(features.NumRows());
-        //TODO: get this from the model.
-        kaldi::VadEnergyOptions opts;
+
+        if (mVadModel->getVadType() != "kaldi-vad")
+            throw std::runtime_error(string("Unsupported vad type: only 'kaldi-vad' is supported."));
+
+        kaldi::VadEnergyOptions opts = mVadModel->getVadConfig();
         kaldi::ComputeVadEnergy(opts, features, &vadResult);
         const int mNumPrevFramesDecoded = mNumFramesDecoded;
         mNumFramesDecoded += vadResult.Dim();

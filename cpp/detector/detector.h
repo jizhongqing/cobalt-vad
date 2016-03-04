@@ -27,7 +27,7 @@ namespace cobalt
     private:
         boost::shared_ptr<kaldi::Mfcc> mMfcc;
         int mNumFramesDecoded;
-
+        VadModel::Ptr mVadModel;
         // false means in silence, true means in speech.
         bool mPreviousEndState;
     };

@@ -1,4 +1,5 @@
 TestLogger: level 2 message Api_NewModel, creating model with id realModel, path data/models/dummy.config
+TestLogger: level 2 message Reading configuration file data/models/dummy.config
 TestLogger: level 2 message Api_NewModel, successfully created model realModel
 TestLogger: level 2 message Api_NewDetector, creating  detector with id example_detector using model id realModel
 TestLogger: level 2 message Api_NewDetector, successfully created detector example_detector

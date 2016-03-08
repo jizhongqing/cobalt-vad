@@ -28,7 +28,7 @@ namespace cobalt
 
     protected:
         // methods
-        virtual void addDefaultConfigs() = 0;
+        void addDefaultConfigs();
         void parseConfigFile(const string& configfile);
         void addDefaultParam(const string& paramName,
                       const string& value,

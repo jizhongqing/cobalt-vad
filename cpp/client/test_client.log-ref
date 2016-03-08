@@ -1,0 +1,10 @@
+
+
+Begin test_wave_writer()
+bytes read first and then re-written are equal.
+Test writing chunks of file
+
+bytes read first and then re-written are equal, with offset and endsample.
+
+
+Begin test_wave_writer()

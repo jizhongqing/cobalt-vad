@@ -44,19 +44,14 @@ namespace cobalt
         throw std::runtime_error("kaldi vad was neither 0 or 1.");
     }
 
-    void frameVadResultsToEvents(const kaldi::Vector<kaldi::BaseFloat> &vadResult, VadEvents& events, int previousEndFrame, bool previousState)
+    void frameVadResultsToEvents(const std::vector<bool> &vadResults, VadEvents& events, int previousEndFrame, bool previousState)
     {
         events.clear();
         // this value is constant for all kaldi frames.
         const int millisecondsPerFrame = 10;
-        // no events return.
-        if (vadResult.Dim() == 0)
+        for (size_t i = 0; i < vadResults.size(); ++i)
         {
-            return;
-        }
-        for (int i = 0; i < vadResult.Dim(); ++i)
-        {
-            const bool currentState = kaldiVadToBool(vadResult(i));
+            const bool currentState = vadResults[i];
             // current state != previous state, an event occurred.
             if (currentState != previousState)
             {

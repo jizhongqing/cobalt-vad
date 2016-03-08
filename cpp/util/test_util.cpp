@@ -96,19 +96,18 @@ void testVadEventsFromFrames()
 {
     cout << endl << endl << "Begin testVadEventsFromFrames()" << endl;
     // first make some events.
-    kaldi::Vector<float> frameVadInfo;
-    frameVadInfo.Resize(30);
+    std::vector<bool> frameVadInfo;
     for (int i = 0 ; i < 10; ++i)
     {
-        frameVadInfo(i) = 1;
+        frameVadInfo.push_back(true);
     }
     for (int i = 10 ; i < 20; ++i)
     {
-        frameVadInfo(i) = 0;
+        frameVadInfo.push_back(false);
     }
     for (int i = 20 ; i < 30; ++i)
     {
-        frameVadInfo(i) = 1;
+        frameVadInfo.push_back(true);
     }
     VadEvents events;
     int previousEndFrame = 0;
@@ -128,7 +127,7 @@ void testVadEventsFromFrames()
     cout << endl << "events with previousEndFrame " << previousEndFrame << " previousState " << previousState << endl;
     printVadEvents(events);
 
-    frameVadInfo.Resize(0);
+    frameVadInfo.resize(0);
     cout << endl << "Try converting to events with 0 frames" << endl;
     frameVadResultsToEvents(frameVadInfo, events, previousEndFrame, previousState);
     printVadEvents(events);

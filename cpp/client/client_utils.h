@@ -50,6 +50,8 @@ namespace vad_client
         typedef boost::lock_guard<boost::mutex> LockGuard_t;
         boost::mutex mMutex;
     };
+
+    void printVadEvents(const cobalt::VadEvents& events);
 }
 
 #endif /* CPP_COBALT_CLIENT_CLIENT_UTILS_H_ */

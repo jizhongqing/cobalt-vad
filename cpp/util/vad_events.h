@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 #include "util/io.h"
-#include "matrix/kaldi-vector.h"
+
 namespace cobalt
 {
     typedef enum
@@ -21,10 +21,10 @@ namespace cobalt
 
     typedef std::vector<VadEvent> VadEvents;
 
-    // function to turn kaldi frame based VAD events into just vad events.
+    // function to turn per frame based VAD events into just vad events.
     // previousEndFrame allows us to keep track of where we ended on the previous frame.
     // previousState allows us to keep track of what state we ended on a previous call.
-    void frameVadResultsToEvents(const kaldi::Vector<kaldi::BaseFloat> &vadResult, VadEvents& events, int previousEndFrame, bool previousState);
+    void frameVadResultsToEvents(const std::vector<bool> &vadResults, VadEvents& events, int previousEndFrame, bool previousState);
 
     JsonValuePtr serializeVadEvents(const VadEvents& events);
 
